@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GIST bouy</title>
+
+	<!-- google Map API -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<!-- Load c3.css -->
+	<link href="lib/c3-0.4.10/c3.css" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+</head>
+<body>
+	<header>
+		<section>
+			<!--
+			<select id="intervalOption">
+			  <option value="60000">1</option>
+			  <option value="300000">5</option>
+			  <option value="600000">10</option>
+			</select>분 간격으로 update.
+			-->
+			<select id="intervalOption">
+			  <option value="10000">10</option>
+			  <option value="5000">5</option>
+			  <option value="1000">1</option>
+			</select>초 간격으로 update. (테스트를 위해 단위를 초로 설정하였습니다.)
+		</section>
+		<section>
+			<table id="current_table"></table>
+		</section>
+	</header>
+	<article>
+		<section>
+			<div id="atmosphere_map" class="atmosphere_map"></div>
+		</section>
+	</article>
+	<footer>
+		<section>
+
+		</section>
+	</footer>
+	<script data-main="requireConf.js" src="lib/requireJS/require.js"></script>
+</body>
+</html>
