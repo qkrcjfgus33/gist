@@ -53,13 +53,14 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully";
 
-setID($conn, $data);
+//setID($conn, $data);
 insertData($conn, $data);
 
 function insertData($conn, $data){
 	foreach($data as &$value){
-		$query = sprintf("INSERT INTO `gist`.`atmosphere` (`area_id`, `date`, `time`, `water temperature`, `pH`, `salinity`, `battery voltage`) VALUES ('%d', '%s', '%s', '%f', '%f', '%f', '%f');",
-		            $value['id'],
+		$query = sprintf("INSERT INTO `gist`.`atmosphere` (`latitude`, `longitude`, `date`, `time`, `water temperature`, `pH`, `salinity`, `battery voltage`) VALUES ('%f', '%f', '%s', '%s', '%f', '%f', '%f', '%f');",
+		            (float)$value['latitude'],
+		            (float)$value['longitude'],
 		            $value['date'],
 		            $value['time'],
 		            (float)$value['water temperature'],
@@ -69,7 +70,7 @@ function insertData($conn, $data){
 		$result = $conn->query($query);
 	}
 }
-
+/*
 function setID($conn, &$data){
 	foreach($data as &$value){
 		$query = sprintf("SELECT id FROM  `area` WHERE  `latitude` = %f AND  `longitude` = %f LIMIT 0 , 1",
@@ -86,5 +87,5 @@ function setID($conn, &$data){
 		    echo_error();
 		}
 	}
-}
+}*/
 ?>

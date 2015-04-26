@@ -1,71 +1,96 @@
-define(function(){
+define(['tpl!/view/MapView/infoWindow.tpl'], 
+    function(infoWindowTpl){
 
-function MapView(x, y, id) {
-    var latlng = new google.maps.LatLng(x, y);
-    var mapOptions = {
-        zoom: 15,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var infoMarkers = {};
-    var map = new google.maps.Map(document.getElementById(id), mapOptions);
-
-    var getSrl = (function(){
-        var srl = 0;
-        return function(){
-            return srl++;
-        }
-    })();
-
-    var marker, data, content, key, infowindow, len, i, srl;
-
-    this.addMarker = function(option) {
-        srl = getSrl();
-        latlng = new google.maps.LatLng(option.latitude, option.longitude);
-        marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            title: option.title
-        });
-        marker._$_srl = srl;
-
-        data = option.data;
-        content = "";
-        for (key in data) {
-            content += (key + ' = ' + data[key] + '<br>');
-        }
-
-        infowindow = new google.maps.InfoWindow({
-            content: content,
-            maxWidth: option.maxWidth
-        });
+    function MapView(dom) {
         
-        google.maps.event.addListener(marker, 'click', function () {
-            for (key in infoMarkers) {
-                infoMarkers[key].infowindow.close();
+        var map;
+        var markers = [];
+        var DOMContainer;
+
+        this.getDOMContainer    = getDOMContainer;
+        this.setDOMContainer    = setDOMContainer;
+        this.addInfoMarker      = addInfoMarker;
+        this.draw               = draw;
+        this.clearAllMarker     = clearAllMarker;
+
+        this.setDOMContainer(dom);
+
+        function getDOMContainer(dom){
+            return DOMContainer[0];
+        }
+
+        function setDOMContainer(dom){
+            DOMContainer = dom;
+        }
+
+        function draw(option){
+            var latlng = new google.maps.LatLng(option.latitude, option.longitude);
+            var mapOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(DOMContainer, mapOptions);
+        }
+
+        function addInfoMarker(option) {
+            var latlng = new google.maps.LatLng(option.latitude, option.longitude);
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: option.title
+            });
+            var keys = _.keys();
+
+            var content = '';
+            _.forEach(option.infoKey, function(val, key){
+                content += (val + ' = ' + option.info[key] + '<br>');
+            });
+
+            marker.infowindow = new google.maps.InfoWindow({
+                content: infoWindowTpl({
+                    title       : option.title,
+                    viewList    : option.viewList,
+                    transList   : option.transList,
+                    info        : option.info
+                })
+            });
+            if(typeof marker.isInfowindowOpen !== 'boolean'){
+                marker.isInfowindowOpen = false;
             }
-            infoMarkers[this._$_srl].infowindow.open(map, this);
-        });
+            
+            google.maps.event.addListener(marker, 'click', function () {
+                _.forEach(markers, function(marker){
+                    marker.infowindow.close();
+                })
 
-        infoMarkers[srl] = {
-            marker      : marker,
-            infowindow  : infowindow
+                if(!this.isInfowindowOpen){
+                    this.infowindow.open(map, this);
+                    this.isInfowindowOpen = true;
+                }else{
+                    this.isInfowindowOpen = false;
+                }
+            });
+
+            markers.push(marker);
+
+            return marker;
         }
 
-        return marker;
-    }
-
-    this.resetMarker = resetMarker;
-
-    function resetMarker(){
-        for (key in infoMarkers) {
-            infoMarkers[key].marker.setMap(null);
+        function clearAllMarker(){
+            _.forEach(markers, function(marker){
+                marker.infowindow.close();
+                marker.setMap(null);
+            })
+            markers = [];
         }
-        infoMarkers = {};
     }
 
-    
-}
+    function isInfoWindowOpen(infoWindow){
+        var map = infoWindow.getMap();
+        console.log(map);
+        return (map !== null && typeof map !== "undefined");
+    }
 
-return MapView;
+    return MapView;
 });

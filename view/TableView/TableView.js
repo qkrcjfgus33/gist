@@ -1,56 +1,48 @@
-define(['jquery', 'lodash'], function($, _){
+define(['jquery', 'lodash', 'tpl!view/TableView/table.tpl'],
+	function($, _, tableTpl){
 
-function TableView(id){
-	var $table = $('#'+id);
-	
-	var keys, key, keyLen, i, dataLen, j, html;
+	function TableView(dom){
+		var $container;
 
-	var clickDetailTagList = [
-		'.water_temperature',
-		'.pH',
-		'.salinity',
-		'.battery_voltage'
-	];
+		this.getDOMContainer 	= getDOMContainer;
+		this.setDOMContainer 	= setDOMContainer;
+		this.draw 				= draw;
+		this.openDetailPopup 	= openDetailPopup;
 
-	clickDetailTagList = clickDetailTagList.join(',');
-	$table.on('click', clickDetailTagList, function(e){
-		console.log(e);
-	});
+		this.setDOMContainer(dom);
 
-	this.setData = function(data, viewItem){
-		//keys = getKeys(data);
-		keys = viewItem;
-		keyLen = keys.length;
-		html = '<tbody><tr>';
-		for(i = 0 ; i < keyLen ; i++){
-			html += ('<td>' + keys[i] + '</td>');
+		function getDOMContainer(){
+			return $container[0];
 		}
-		html += '</tr><tr>';
 
-		dataLen = data.length;
-		for(i = 0 ; i < dataLen ; i++){
-			html += '<tr>';
-			for(j = 0 ; j < keyLen ; j++){
-				if(data[i][keys[j]] === undefined){
-					html += ('<td></td>');
-				}
-				html += ('<td class="'+keys[j].replace(/\s/,'_')+'">' + data[i][keys[j]] + '</td>');
-			}
-			html += '</tr>';
+		function setDOMContainer(dom){
+			$container = $(dom);
 		}
-		html += '</tr></tbody>';
-		$table.html(html);
+
+		/**
+		 * data를 세팅하고 화면에 표시.
+		 * @param {Array} data     세팅할 데이터
+		 * @param {Array} viewList 표시할 값 종류
+		 */
+		function draw(data, viewList, transList){
+			$container.html(tableTpl({
+				data 		: data,
+				viewList 	: viewList,
+				transList 	: transList
+			}));
+		}
+
+		/**
+		 * 자세히 보기 팝업을 연다.
+		 * @param  {int} srl DataController에서 정해지는 고유값.
+		 */
+		function openDetailPopup(srl, title){
+			var popUrl = "pages/detail/detail.html";
+			var popOption = "width=1000, height=800, resizable=no, scrollbars=no, status=no;";
+
+			window.open(popUrl+'?t='+(new Date()-0)+'&srl='+srl+'&title='+title,"",popOption);
+		}
 	}
 
-	function getKeys(obj){
-		keys = [];
-		keyLen = obj.length;
-		for(i = 0 ; i < keyLen ; i++){
-			Array.prototype.push.apply(keys, _.keys(obj[i]));
-		}
-		return _.uniq(keys);
-	}
-}
-
-return TableView;
+	return TableView;
 });
