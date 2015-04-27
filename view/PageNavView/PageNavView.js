@@ -42,12 +42,14 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl']
 			})
 		}
 
-		function init(totalPageNum, _viewPageNum, _viewNavHalfNum){
+		function init(_currentNavNum, totalPageNum, _viewPageNum, _viewNavHalfNum){
+			currentNavNum 	= parseInt(_currentNavNum);
 			lastPageNum 	= parseInt(totalPageNum) - 1;
 			viewPageNum 	= parseInt(_viewPageNum);
 			viewNavHalfNum 	= parseInt(_viewNavHalfNum);
 
 			_init();
+			_resetValues();
 		}
 
 		function _init(){
@@ -118,8 +120,13 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl']
 			endNavNum = currentNavNum + remainderNavNum;
 
 			if(endNavNum >= lastNavNum){
+				startNavNum -= (endNavNum - lastNavNum);
 				endNavNum = lastNavNum
 				hasNextNav = false;
+			}
+
+			if(startNavNum <= 0){
+				startNavNum = 0;
 			}
 		}
 	}

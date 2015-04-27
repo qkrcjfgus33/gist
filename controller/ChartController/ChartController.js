@@ -5,6 +5,7 @@ define([],function(){
 		var gets = getQueryVariable();
 		var viewNavHalfNum = 5;
 		var viewPageNum = 10;
+		var currentNavNum = 0;
 
 		this.init = init;
 
@@ -12,20 +13,21 @@ define([],function(){
 			
 			oAtomsphereModel.getTotalPageNum(gets)
 				.done(function(totalPageNum){
-				    oPageNaveView.init(totalPageNum, viewPageNum, viewNavHalfNum);
-					oPageNaveView.setCurrentNavNum(0);
+				    oPageNaveView.init(currentNavNum, totalPageNum, viewPageNum, viewNavHalfNum);
 					oPageNaveView.draw();
 					oPageNaveView.syncCurrentPage();
 				});
 			
-			oPageNaveView.on('syncCurrentPage', function(currentNavNum){
-				
+			oPageNaveView.on('syncCurrentPage', function(_currentNavNum){
+				currentNavNum = _currentNavNum;
 				gets.startPageNum = viewPageNum * currentNavNum;
 				gets.viewPageNum = viewPageNum;
 
 				oAtomsphereModel.loadData(gets)
 					.done(function(data){
-					    oChartView.draw(gets.title, data);
+						if(currentNavNum === _currentNavNum){
+							oChartView.draw(gets.title, data);
+						}
 					});
 				});
 		}
