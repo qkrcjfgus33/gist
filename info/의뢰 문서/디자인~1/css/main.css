@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* wrap style */
+body.loginBody {background:#616161 url(../images/loginBg.gif) top center no-repeat;background-size:cover}
+#container {width:1920px}
+#container:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+#loginWrap h1 {width:265px;margin:10% auto 8% auto}
+#loginWrap form {width:340px;margin:0 auto}
+#loginWrap input {width:320px;height:38px;margin:8px 0 0 0;padding:0 10px;border:0;background:#fff}
+#loginWrap p {margin:32px 0 0 0}
+/******************************************* header *******************************************/
+#header {position:relative;width:1920px;height:42px;background:#d3d6db;border-bottom:1px solid #a3a7ad}
+#header p.pageLocation {line-height:42px;text-indent:1.5em}
+/******************************************* content *******************************************/
+#sidebar1 {float:left;width:340px;height:1036px}
+#sidebar1 h2 {margin:20px 0 20px 32px}
+#sidebar1 ol {width:268px;height:760px;background:#e9eaec;border:1px solid #9e9e9d;color:#2d2e30;overflow:auto;overflow-x:hidden}
+#sidebar1 ol li {clear:both;*zoom:1}
+#sidebar1 ol li:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+#sidebar1 ol li dl {padding:0 0 20px 0;width:268px}
+#sidebar1 ol li dl dt {margin:0 0 10px 0;padding:0 0 0 32px;font-weight:bold;line-height:40px;border-top:1px solid #fff;border-bottom:1px solid #c3c4c8}
+#sidebar1 ol li dl dd {padding:4px 0 2px 32px}
+#sidebar1 p.sideBtn {clear:both;padding:60px 0 0 0;width:268px;height:134px;background:#e9eaec;border:1px solid #9e9e9d;border-top:0}
+#sidebar1 p.sideBtn span {float:left;width:134px;height:40px;line-height:40px;font-weight:bold;text-align:center;border-top:1px solid #9e9e9d;border-bottom:1px solid #9e9e9d}
+#sidebar1 p.sideBtn span.wtMore {width:133px;border-right:1px solid #9e9e9d}
+#sidebar1 a, #sidebar1 a:visited {display:block;color:#333;text-decoration:none}
+#sidebar1 a:hover, #sidebar1 a:active, #sidebar1 a:focus {color:#17c2fa;background:#47505c;text-decoration:none}
+
+#sidebar2 {float:left;width:340px;height:1036px}
+#sidebar2 h2 {padding:20px 0 20px 32px;border-right:1px solid #9e9e9d;background:url(../images/logo_bg.gif) 0 0 repeat-x}
+#sidebar2 ol {width:338px;height:760px;background:#e9eaec;border:1px solid #9e9e9d;border-bottom:0;color:#2d2e30;overflow:auto;overflow-x:hidden}
+#sidebar2 ol li {clear:both;*zoom:1}
+#sidebar2 ol li:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+#sidebar2 ol li.sideEnd{border-bottom:1px solid #fff}
+#sidebar2 ol li dl {padding:0 0 0 0;width:340px}
+#sidebar2 ol li dl dt {padding:0 0 0 32px;font-weight:bold;line-height:40px;border-top:1px solid #fff;border-bottom:1px solid #c3c4c8;*zoom:1}
+#sidebar2 ol li dl dt:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+#sidebar2 ol li dl dd {display:none}
+#sidebar2 p.sideBtn {clear:both;width:338px;height:194px;background:#e9eaec;border:1px solid #9e9e9d;border-top:0}
+#sidebar2 p.sideBtn span {float:left;margin:60px 0 0 0;width:169px;height:40px;line-height:40px;font-weight:bold;text-align:center;border-top:1px solid #9e9e9d;border-bottom:1px solid #9e9e9d}
+#sidebar2 p.sideBtn span.wtMore {width:168px;border-right:1px solid #9e9e9d}
+#sidebar2 a, #sidebar2 a:visited {display:block;color:#333;text-decoration:none}
+#sidebar2 a:hover, #sidebar2 a:active, #sidebar2 a:focus {background:#22272d;color:#17c2fa;text-decoration:none}
+
+#content {position:relative;float:left;width:1580px}
+#content h3 {font-size:1.2em;color:#414141}
+
+#notice {padding:20px 0 18px 0;height:40px}
+#notice h3 {float:left}
+#notice p {float:left;width:1382px}
+#notice p input {padding:0 10px;width:1362px;line-height:39px;height:39px;border:0;background:#e7e7e7}
+
+#tfc {position:relative;width:1480px;height:939px;background:url(../images/mainBg.gif) 0 0 no-repeat}
+#tfc ol.tfcSensor {position:relative;height:760px}
+#tfc ol.tfcSensor li {position:absolute;top:80px;padding:10px 0 0 0;width:54px;height:348px;text-align:center}
+#tfc ol.tfcSensor li.wt01 {left:528px}
+#tfc ol.tfcSensor li.wt02 {left:591px}
+#tfc ol.tfcSensor li.wt03 {left:706px}
+#tfc ol.tfcSensor li.wt04 {left:769px}
+#tfc ol.tfcSensor li.wt05 {left:885px}
+#tfc ol.tfcSensor li.wt06 {left:948px}
+#tfc ol.tfcSensor li.wt07 {left:1082px}
+#tfc ol.tfcSensor li.wt08 {left:1145px}
+#tfc ol.tfcSensor li.wt09 {left:1278px}
+#tfc ol.tfcSensor li.wt10 {left:1341px}
+#tfc ol.tfcSensor li ul li {position:relative;padding:0;width:auto;height:auto;top:auto;left:auto;font-size:0;line-height:0}
+
+#tfc dl.swwt {position:absolute;top:78px;left:114px;padding:24px 0 0 0;width:186px;height:112px;background:url(../images/swwtBox.gif) 0 0 no-repeat}
+#tfc dl.swwt input {float:left;width:60px;height:20px;margin:0 0 14px 99px;padding:0 6px;border:0;background:#e7e7e7;font-size:1em;line-height:20px}
+
+#schedule {float:left;position:relative;margin:0 0 0 26px;padding:21px 31px 0 31px;width:390px;height:128px;background:#e2e0df;border:1px solid #c1c1c1}
+#schedule h3 {width:392px;border-bottom:1px solid #bfbfbf}
+#schedule p {position:absolute;top:26px;right:31px}
+#schedule ol {padding:6px 0 0 0}
+#schedule ol li {padding:6px 0;background:url(../images/boundaty01.gif) left bottom repeat-x}
+#schedule ol li.scheduleEnd {background:none}
+
+#weather {float:left;position:relative;margin:0 0 0 36px;padding:21px 31px 0 31px;width:390px;height:128px;background:#e2e0df;border:1px solid #c1c1c1}
+#weather p.weatherBox {position:absolute;top:21px;right:31px;width:246px;height:30px;background:#202833;font-weight:bold;text-align:center;line-height:30px;color:#bfbfbf}
+#weather p.weatherBox span {color:#ffffff}
+#weather p.weatherIcon {position:absolute;top:42px;left:20px}
+#weather dl {padding:26px 0 0 144px;width:246px;color:#202833;line-height:26px}
+#weather dl dt {float:left;margin:0 0 6px 0;width:104px;height:26px;border:1px solid #bfbfbf;background:#bfbfbf;text-align:center;font-weight:bold;letter-spacing:-1px}
+#weather dl dd {float:left;margin:0 0 6px 0;padding:0 6px;width:126px;height:26px;border:1px solid #bfbfbf;background:#e7e7e7}
+
+#tide {float:left;position:relative;margin:0 0 0 36px;padding:21px 31px 0 31px;width:410px;height:128px;background:#e2e0df;border:1px solid #c1c1c1}
+#tide h3 {border-bottom:1px solid #bfbfbf}
+#tide p {position:absolute;top:25px;right:31px}
+#tide p select {width:120px;height:22px;line-height:22px}
+#tide dl {width:412px;color:#202833;line-height:25px}
+#tide dl dt {float:left;width:140px;height:25px;text-align:center;font-weight:bold;background:#fff url(../images/boundaty01.gif) left bottom repeat-x}
+#tide dl dt.tideEnd01 {background:#fff none}
+#tide dl dd {float:left;padding:0 8px;width:254px;height:25px;background:#f1f0ef url(../images/boundaty01.gif) left bottom repeat-x}
+#tide dl dd.tideEnd02 {background:#f1f0ef none}
+#tide dl dd img {vertical-align:middle}
+/******************************************* footer *******************************************/
+#footer {clear:both;position:relative}
+#footer p {position:absolute;top:-65px;left:32px;color:#505458}

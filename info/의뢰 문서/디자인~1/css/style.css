@@ -1,0 +1,5 @@
+*{margin:0;padding:0;list-style:none;border:0}
+body {font: 75%/1.4 Verdana, Arial, Helvetica, sans-serif, "돋움";background: #42413C;color: #000}
+
+#wrap {width:100%;*zoom:1}
+#wrap:after{content:"";clear:both;display:block;height:0;visibility:hidden}

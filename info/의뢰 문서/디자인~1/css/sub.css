@@ -1,0 +1,105 @@
+@charset "utf-8";
+/******************************************* content *******************************************/
+#wtcs h3 {height:39px;line-height:39px;text-align:center;border-bottom:1px solid #9e9e9d;background:#dee3e7}
+#wtcs form {border-bottom:1px solid #9e9e9d;background:#dee3e7;*zoom:1}
+#wtcs form:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+#wtcs form fieldset {position:relative;padding:16px 0}
+#wtcs form fieldset input {display:inline-block;vertical-align:middle;color:#616161}
+
+#wtcs form fieldset.fsType01 {float:left;width:700px;padding-left:60px}
+#wtcs form fieldset.fsType01 label {display:inline-block;width:100px;height:28px;line-height:28px;padding:0 10px 0 0;vertical-align:middle}
+#wtcs form fieldset.fsType01 label.fsLabel {width:auto}
+#wtcs form fieldset.fsType01 input {width:150px;height:26px;margin:0 4px 0 0;padding:0 10px;border:1px solid #999999}
+#wtcs form fieldset.fsType01 input.ifTitle {width:200px;height:26px;margin:0 4px 0 0;padding:0 10px;border:0;background:#9ea5ab;font-size:1.25em;font-weight:bold;color:#383838}
+#wtcs form fieldset.fsType02 {float:right;width:700px;padding-right:60px;text-align:right}
+#wtcs form fieldset.fsType02 label {display:inline-block;width:100px;height:28px;line-height:28px;padding:0 10px 0 0;vertical-align:middle}
+#wtcs form fieldset.fsType02 input {width:150px;height:26px;margin:0 4px 0 0;padding:0 10px;border:1px solid #999999}
+#wtcs form fieldset.fsType03 {clear:both;padding-left:60px;background:#4c5467}
+#wtcs form fieldset.fsType03 label {margin:0 75px 0 0;color:#fff}
+#wtcs form fieldset.fsType04 {border-top:0}
+#wtcs form fieldset.fsType05 {float:left;width:500px;padding-left:60px}
+#wtcs form fieldset.fsType05 input {width:220px;height:26px;margin:0 4px 0 0;padding:0 10px;border:0;background:#9ea5ab;font-size:1.25em;font-weight:bold;color:#383838}
+#wtcs form fieldset.fsType06 {float:right;width:900px;padding-right:60px;text-align:right}
+#wtcs form fieldset.fsType06 input.ipType01 {width:200px}
+#wtcs form fieldset.fsType06 label {width:56px}
+
+#wtcs form.formType01 {padding:50px 0 0 60px;height:943px}
+#wtcs form.formType01 fieldset.fsType07 {float:left;width:326px;height:300px;margin:0 50px 40px 0;background:#fff}
+#wtcs form.formType01 fieldset.fsType07 legend {display:block;width:100%;padding:10px 0;background:#4c5467;color:#fff;text-align:center;font-weight:bold}
+#wtcs form.formType01 fieldset.fsType07 h4 {padding:20px 0 10px 20px;margin:20px 0 0 0;background:url(../images/boundaty01.gif) left top repeat-x}
+#wtcs form.formType01 fieldset.fsType07 h4.fsFirst {padding:0 0 10px 20px;margin:0 0 0 0;background:none}
+#wtcs form.formType01 fieldset.fsType07 label {display:inline-block;width:60px;padding:0 0 0 20px;margin:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType07 input {display:inline-block;width:200px;height:26px;margin:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType07 input.lux100 {width:100px;height:26px;text-align:center}
+#wtcs form.formType01 fieldset.fsType07 span {display:inline-block;padding:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType07 p {text-align:center}
+#wtcs form.formType01 fieldset.fsType08 {float:left;width:702px;height:300px;margin:0 50px 40px 0;background:#fff}
+#wtcs form.formType01 fieldset.fsType08 legend {display:block;width:100%;padding:10px 0;background:#4c5467;color:#fff;text-align:center;font-weight:bold}
+#wtcs form.formType01 fieldset.fsType08 label {display:inline-block;width:200px;padding:0 0 0 20px;margin:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType08 input {display:inline-block;width:420px;height:26px;margin:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType08 input.lux100 {width:100px;height:26px;text-align:center}
+#wtcs form.formType01 fieldset.fsType08 span {display:inline-block;padding:10px 0 0 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType08 p {text-align:center}
+#wtcs form.formType01 fieldset.fsType09 {margin:0 50px 40px 0;background:#fff}
+#wtcs form.formType01 fieldset.fsType09 legend {display:block;width:100%;padding:10px 0;background:#4c5467;color:#fff;text-align:center;font-weight:bold}
+#wtcs form.formType01 fieldset.fsType09 label {display:inline-block;width:100px;padding:0 0 0 20px;margin:20px 0 20px 110px;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType09 input {display:inline-block;width:420px;height:26px;margin:20px 0 20px 0;vertical-align:middle}
+#wtcs form.formType01 fieldset.fsType09 p {padding:20px 0 10px 0;margin:40px 0 0 0;text-align:center;background:url(../images/boundaty01.gif) left top repeat-x}
+
+#wtcs form fieldset input.submitType {width:auto !important;height:auto;padding:0;border:0}
+#wtcs form fieldset input.iconCal {background:#fff url(../images/iconCal.gif) top right no-repeat}
+
+#wtcs form input.inputStyle01 {width:100px;height:28px;background:#0066ff;border:0}
+#wtcs ul.wtcsUl {margin:50px 0 0 60px}
+#wtcs ul.wtcsUl li {float:left;width:326px;margin:0 50px 40px 0}
+#wtcs ul.wtcsUl li ul {margin:0}
+#wtcs ul.wtcsUl li ul li {margin:0;padding:4px 0 2px 0}
+#wtcs ul.wtcsUl li ul li.wtcsImg {width:326px;height:180px;padding:0;margin:0 0 10px 0;background:#7f7f7f url(../images/no_img.png) 111px 78px no-repeat}
+#wtcs ul.wtcsUl li ul li strong {padding:0 6px 0 0}
+
+#wtcs div.wtcsGraph01 {padding:40px 60px;height:340px;background:#fff}
+#wtcs div.wtcsGraph02 {padding:40px 60px;height:341px;background:#fff}
+#wtcs div.wtcsGraph03 {padding:40px 60px;height:785px;background:#fff}
+#wtcs div.wtcsGraph04 {padding:40px 60px;height:793px;background:#fff}
+
+#wtcs div.conLeft01 {float:left;width:240px;padding:40px 0 40px 60px}
+#wtcs div.conLeft01 dl {border:1px solid #999;margin:0 0 40px 0;padding:0 0 12px 0}
+#wtcs div.conLeft01 dl dt {padding:12px 0;margin:0 0 12px 0;border-bottom:1px solid #999;background:#d0d3d8;color:#4c5467;font-weight:bold;text-align:center}
+#wtcs div.conLeft01 dl dd {padding:8px 0 6px 16px}
+#wtcs div.conLeft01 dl dd.crImg01 {padding:0;margin:0 0 6px 16px;width:208px;height:156px;background:#7f7f7f url(../images/no_img.png) center 60px no-repeat}
+#wtcs div.conLeft01 dl dd input.photo01 {display:block;width:208px;height:26px;}
+
+#wtcs div.conCenter01 {float:left;width:380px;margin:40px 30px 40px 60px}
+#wtcs div.conCenter01 dl {border:1px solid #999;margin:0 0 40px 0;padding:0 0 12px 0}
+#wtcs div.conCenter01 dl dt {padding:12px 0;margin:0 0 12px 0;border-bottom:1px solid #999;background:#d0d3d8;color:#4c5467;font-weight:bold;text-align:center}
+#wtcs div.conCenter01 dl dd {padding:8px 0 6px 20px}
+#wtcs div.conCenter01 dl dd label {display:inline-block;width:90px}
+#wtcs div.conCenter01 dl dd input {padding:0 10px;margin:0 0 0 10px;height:26px;border:1px solid #999;vertical-align:middle}
+#wtcs div.conCenter01 dl dd input.ifType01 {width:216px}
+#wtcs div.conCenter01 dl dd input.ifType02 {width:146px}
+#wtcs div.conCenter01 dl dd input.ifType03 {width:38px;text-align:center}
+#wtcs div.conCenter01 dl dd input.ifType04 {width:92px;background:#fff url(../images/iconCal.gif) top right no-repeat}
+#wtcs div.conCenter01 dl dd input.ifType05 {width:92px;text-align:center}
+#wtcs div.conCenter01 dl dd input.ifType06 {width:92px}
+#wtcs div.conCenter01 dl dd input.ifType07 {width:92px;margin:6px 0 0 100px}
+#wtcs div.conCenter01 dl dd input.ifType08 {width:92px;margin-top:6px;text-align:center}
+#wtcs div.conCenter01 dl dd select {width:238px;height:26px;margin:0 0 0 10px;vertical-align:middle}
+
+#wtcs div.conRight01 {float:left;width:1158px;margin:40px 60px;border:1px solid #999}
+#wtcs div.conRight02 {float:left;width:710px;margin:40px 60px 0 0;padding:20px 20px 28px 20px;background:#dee3e7}
+#wtcs div.conRight02 dl {height:740px;border:1px solid #999;margin:0 0 20px 0;padding:0 0 12px 0;background:#fff}
+#wtcs div.conRight02 dl dt {padding:12px 0;margin:0 0 12px 0;border-bottom:1px solid #999;background:#d0d3d8;color:#4c5467;font-weight:bold;text-align:center}
+#wtcs div.conRight02 dl dd {padding:8px 20px 6px 20px;background:url(../images/boundaty01.gif) left bottom repeat-x}
+#wtcs div.conRight02 dl dd.memoEnd {background:none}
+#wtcs div.conRight02 p {text-align:center}
+#wtcs div.conRight02 p input {margin:0 4px}
+
+div.tbWrap {clear: both; line-height: 120%; padding: 0 0 24px 0; border-bottom:1px solid #999}
+div.tbWrap.tbType01 {height:908px; overflow-y:scroll}
+div.tbWrap caption {padding:12px 0;background:#d0d3d8;color:#4c5467;font-weight:bold;text-align:center}
+div.tbWrap table {clear: both; width:100%; border-collapse: collapse; *zoom:1;}
+div.tbWrap table:after{content: ""; clear: both; display: block; height: 0; visibility: hidden;}
+div.tbWrap thead th {padding: 14px 8px 10px 8px; text-align: center; border: 1px solid #e0e0e0; color: #fff; letter-spacing: -1px; background: #737a88;}
+div.tbWrap tbody th {padding: 12px 8px 8px 8px; text-align: center; border: 1px solid #e0e0e0; color: #fff; letter-spacing: -1px; background: #737a88;}
+div.tbWrap tbody td {padding: 12px 8px 8px 8px; text-align: center; border: 1px solid #e0e0e0; color: #7b7b7b;}
+div.tbWrap p.tableBtn {padding: 20px 0 0 0; text-align: center}

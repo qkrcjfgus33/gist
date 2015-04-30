@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* body style */
+*{margin:0;padding:0}
+body {background:#fff;font-family:"돋움";font-size:75%;color:#76736c}
+#wrap {width:100%;*zoom:1}
+#wrap:after{content:"";clear:both;display:block;height:0;visibility:hidden}
+
+/*링크 기본 스타일*/
+a{color:#515151;text-decoration:none}
+a:hover{color:#919191;text-decoration:none}
+
+/*이미지 스타일*/
+img,fieldset {border:0}
+
+/*공통 스타일*/ 
+h1,h2,h3,h4,h5,h6 {font-size:1em}
+hr,legend {display:none}
+.hide {display:none}
+.hidden {position:absolute;visibility:hidden;width:0;height:0;overflow:hidden;font-size:0}
+.show {display:block}
+address {font-style:normal}
+li {list-style:none}
+label {cursor:pointer}
+.cursor {cursor:pointer}
+.fl {float:left}
+.fr {float:right}
+.floatClear {clear:both;font-size:0;line-height:0}

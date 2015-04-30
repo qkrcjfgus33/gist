@@ -1,0 +1,5 @@
+주소: HTTP://121.178.212.134/dasima/login.jsp
+
+아이디 : testuser
+
+비밀번호 : 1234
