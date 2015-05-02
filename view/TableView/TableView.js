@@ -1,48 +1,38 @@
-define(['jquery', 'lodash', 'tpl!view/TableView/table.tpl'],
-	function($, _, tableTpl){
+define(['jquery', 'lodash', 'EventEmitter', 'tpl!view/TableView/table.tpl'],
+	function($, _, EventEmitter, tableTpl){
 
-	function TableView(dom){
-		var $container;
+	var clickDetailTagList = [
+	    "[infoType='water temperature']",
+	    "[infoType='pH']",
+	    "[infoType='salinity']",
+	    "[infoType='battery voltage']"
+	];
 
-		this.getDOMContainer 	= getDOMContainer;
-		this.setDOMContainer 	= setDOMContainer;
-		this.draw 				= draw;
-		this.openDetailPopup 	= openDetailPopup;
+	clickDetailTagList = clickDetailTagList.join(',');
 
-		this.setDOMContainer(dom);
+	function TableView(selector){
+		this.draw = draw;
 
-		function getDOMContainer(){
-			return $container[0];
-		}
-
-		function setDOMContainer(dom){
-			$container = $(dom);
-		}
+		var $container = $(selector);
+		var instance = this;
 
 		/**
 		 * data를 세팅하고 화면에 표시.
 		 * @param {Array} data     세팅할 데이터
 		 * @param {Array} viewList 표시할 값 종류
 		 */
-		function draw(data, viewList, transList){
-			$container.html(tableTpl({
-				data 		: data,
-				viewList 	: viewList,
-				transList 	: transList
-			}));
-		}
+		function draw(option){
+			$container.html(tableTpl(option));
 
-		/**
-		 * 자세히 보기 팝업을 연다.
-		 * @param  {int} srl DataController에서 정해지는 고유값.
-		 */
-		function openDetailPopup(srl, title){
-			var popUrl = "pages/detail/detail.html";
-			var popOption = "width=1000, height=800, resizable=no, scrollbars=no, status=no;";
-
-			window.open(popUrl+'?t='+(new Date()-0)+'&srl='+srl+'&title='+title,"",popOption);
+			$container.on('click', clickDetailTagList, function(e){
+			    var $eCurrentTarget = $(e.currentTarget);
+			    instance.emit('open detail', $eCurrentTarget.attr('srl'), $eCurrentTarget.attr('title'));
+			});
 		}
 	}
+
+	//EventEmitter 클래스 상속
+	TableView.prototype = _.clone(EventEmitter.prototype);
 
 	return TableView;
 });

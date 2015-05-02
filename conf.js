@@ -1,4 +1,5 @@
 //requireJS 기본 설정 부분
+//파일들의 경로 설정이라고 보면 됨.
 requirejs.config({
     paths:{
         'c3'                : 'lib/c3-0.4.10/c3.min',
@@ -7,6 +8,9 @@ requirejs.config({
         'jquery'            : 'lib/jQuery/jQuery',
         'lodash'            : 'lib/lodash/lodash',
         'tpl'               : 'lib/requirejs-tpl/tpl',
+
+        'getQueryVariable'  : 'common/getQueryVariable',
+        'openPopup'         : 'common/openPopup',
 
         'AtomsphereModel'   : 'model/AtomsphereModel/AtomsphereModel',
         'IntervalGetModel'  : 'model/IntervalGetModel/IntervalGetModel',
@@ -30,6 +34,5 @@ requirejs.config({
     }
 });
 
-requirejs([],function(){
-    appInit();
-});
+//init.js에서 설정된 appInit 실행.
+appInit();

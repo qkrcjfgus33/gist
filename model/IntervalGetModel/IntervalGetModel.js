@@ -14,6 +14,7 @@ define(['lodash', 'EventEmitter'],
             }
             instance = this;
 
+            // public methods
             this.stop           = stop;
             this.play           = play;
             this.setInterval    = setInterval;

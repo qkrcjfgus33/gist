@@ -1,13 +1,12 @@
-define([],function(){
+define(['getQueryVariable'],function(getQueryVariable){
 
 	function ChartController(oAtomsphereModel, oChartView, oPageNaveView){
+		this.init = init;
 
 		var gets = getQueryVariable();
 		var viewNavHalfNum = 5;
 		var viewPageNum = 10;
 		var currentNavNum = 0;
-
-		this.init = init;
 
 		function init(){
 			
@@ -20,33 +19,23 @@ define([],function(){
 			
 			oPageNaveView.on('syncCurrentPage', function(_currentNavNum){
 				currentNavNum = _currentNavNum;
-				gets.startPageNum = viewPageNum * currentNavNum;
-				gets.viewPageNum = viewPageNum;
+				var sendData = {
+					srl				: gets.srl,
+					startPageNum 	: viewPageNum * currentNavNum,
+					viewPageNum		: viewPageNum
+				};
 
-				oAtomsphereModel.loadData(gets)
+				oAtomsphereModel.loadData(sendData)
 					.done(function(data){
 						if(currentNavNum === _currentNavNum){
-							oChartView.draw(gets.title, data);
+							oChartView.draw({
+								title: gets.title,
+								data: data
+							});
 						}
 					});
 				});
 		}
-	}
-
-	function getQueryVariable() {
-	    var vars= {};
-	    var url_search = window.location.search;
-	    if(url_search.length!==0)
-	        url_search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value){
-	            key=decodeURIComponent(key);
-	            if(typeof vars[key]==="undefined") {
-	            	vars[key]= decodeURIComponent(value);
-	            }
-	            else {
-	            	vars[key]= [].concat(vars[key], decodeURIComponent(value));
-	            }
-	    });
-	    return vars;
 	}
 
 	return ChartController;

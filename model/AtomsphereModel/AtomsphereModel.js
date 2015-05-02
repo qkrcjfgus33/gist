@@ -41,6 +41,7 @@ define(['jquery'], function($){
 	}
 
 	function srlConvertData(srl){
+		console.log(srl);
 		var srl_data = srl.split('_');
 		return{
 			latitude 	: srl_data[0],

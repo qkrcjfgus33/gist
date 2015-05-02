@@ -10,10 +10,8 @@
 	<!-- Load c3.css -->
 	<link href="lib/c3-0.4.10/c3.css" rel="stylesheet" type="text/css">
 
+	<!-- 기본 css 파일 -->
 	<link rel="stylesheet" type="text/css" href="css/default.css">
-
-	<link rel="stylesheet" type="text/css" href="lib/open-iconic/font/css/open-iconic.css">
-
 </head>
 <body>
 	<header>
@@ -29,25 +27,12 @@
 		</section>
 	</article>
 	<section id="limtControl"></section>
-	<footer>
-		<pre>
-MAX MIN 설정은 지역마다 요소마다 각각 가능 해야되는가.
-요소마다만 설정 가능하면 되는가.
-
-그래프 구현시 일정별 전체 데이터는 준비된 DB가 있는가.
-아니면 우리가 직접 DB 구현을 해야되는가?
-
-저장해야될 요소가 정확히 무엇인가? (수온 pH등 말고도 습도/ 인근 조석정보 등도 나와있다. 다만, 예시에는 위 요소와 같았음)
-
-지역위치와 요소는 고정되어 있는가?
-
-서버 환경은? (DB, 서버, OS, 서버언어, 그외 전체적인것. (이후 합칠때 문제발생) )
-
-엑셀 형식은 어떻게?
-		</pre>
-	</footer>
-
-	<script src="init.js"></script>
+	<footer></footer>
+	
+	<!-- requireJS 설정 -->
+	<!-- conf.js -> appInit.js 순으로 실행 -->
+	<script src="appInit.js"></script>
 	<script data-main="conf.js" src="lib/requireJS/require.js"></script>
+	<!-- requireJS 설정 끝-->
 </body>
 </html>

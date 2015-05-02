@@ -6,32 +6,22 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/IntervalGetView/intervalI
 		return 'interval_IO_'+id;
 	}
 
-	function IntervalGetView(dom){
-		var $container;
-		var $IO;
-		var instance = this;
-		var id = getID();
-
-		this.getDOMContainer    = getDOMContainer;
-		this.setDOMContainer    = setDOMContainer;
+	function IntervalGetView(selector){
 		this.draw 				= draw;
 		this.syncInterval 		= syncInterval;
 
-		this.setDOMContainer(dom);
+		var instance = this;
+		var id = getID();
+		var interval;
 
-		function getDOMContainer(){
-			return $container[0];
-		}
+		var $container = $(selector);
+		var $IO;
 
-		function setDOMContainer(dom){
-			$container = $(dom);
-		}
-
-		function draw(secondList, unit){
+		function draw(option){
 			$container.html(intervalIOTpl({
 				id 			: id,
-				secondList 	: secondList,
-				unit 		: unit
+				secondList 	: option.secondList,
+				unit 		: option.unit
 			}));
 
 			$IO = $container.find('#'+id);
@@ -42,7 +32,8 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/IntervalGetView/intervalI
 		}
 
 		function syncInterval(){
-		    instance.emit('syncInterval', parseFloat($IO.val()));
+			interval = parseFloat($IO.val());
+		    instance.emit('syncInterval', interval);
 		}
 	}
 

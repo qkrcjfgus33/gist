@@ -1,27 +1,15 @@
 define(['tpl!/view/MapView/infoWindow.tpl'], 
     function(infoWindowTpl){
 
-    function MapView(dom) {
+    function MapView(selector) {
+        this.draw               = draw;
+        this.addInfoMarker      = addInfoMarker;
+        this.clearAllMarker     = clearAllMarker;
         
         var map;
         var markers = [];
-        var DOMContainer;
-
-        this.getDOMContainer    = getDOMContainer;
-        this.setDOMContainer    = setDOMContainer;
-        this.addInfoMarker      = addInfoMarker;
-        this.draw               = draw;
-        this.clearAllMarker     = clearAllMarker;
-
-        this.setDOMContainer(dom);
-
-        function getDOMContainer(dom){
-            return DOMContainer[0];
-        }
-
-        function setDOMContainer(dom){
-            DOMContainer = dom;
-        }
+        var $container = $(selector);
+        var DOMContainer = $container[0];
 
         function draw(option){
             var latlng = new google.maps.LatLng(option.latitude, option.longitude);

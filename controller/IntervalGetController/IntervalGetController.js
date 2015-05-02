@@ -2,14 +2,19 @@ define([],function(){
 
 	function IntervalGetController(oIntervalGetModel, oIntervalGetView){
 
-		var secondList = [10, 5, 1];
-		var unit = '초';
-
 		this.init = init;
 
+		var drawOption = {
+			secondList : [10, 5, 1],
+			unit: '초'
+		}
+
 		function init(){
-			oIntervalGetView.draw(secondList, unit)
-			oIntervalGetView.on('syncInterval', oIntervalGetModel.setInterval);
+			oIntervalGetView.on('syncInterval', function(interval){
+				oIntervalGetModel.setInterval(interval)
+			});
+
+			oIntervalGetView.draw(drawOption);
 			oIntervalGetView.syncInterval();
 
 			oIntervalGetModel.play();

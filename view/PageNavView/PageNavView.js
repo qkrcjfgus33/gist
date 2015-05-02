@@ -8,7 +8,13 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl']
 	}
 
 	function PageNaveView(dom){
-		var $container;
+		
+		this.init    			= init;
+		this.setCurrentNavNum  	= setCurrentNavNum;
+		this.syncCurrentPage    = syncCurrentPage;
+		this.draw 				= draw;
+
+		var $container = $(dom);
 		var instance = this;
 		var currentNavNum = 0;
 		var lastPageNum, viewPageNum,
@@ -16,31 +22,14 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl']
 			startNavNum, endNavNum, 
 			hasPreNav, hasNextNav;
 
-		this.getDOMContainer    = getDOMContainer;
-		this.setDOMContainer    = setDOMContainer;
-		this.init    			= init;
-		this.setCurrentNavNum  	= setCurrentNavNum;
-		this.syncCurrentPage    = syncCurrentPage;
-		this.draw 				= draw;
-
-		this.setDOMContainer(dom);
-
-		function getDOMContainer(){
-			return $container[0];
-		}
-
-		function setDOMContainer(dom){
-			$container = $(dom);
-
-			$container.on('click', '[page-nav]' , function(e){
-				var page_nav = $(e.currentTarget).attr('page-nav');
-				
-				instance.setCurrentNavNum(page_nav);
-				instance.draw();
-				
-				instance.syncCurrentPage();
-			})
-		}
+		$container.on('click', '[page-nav]' , function(e){
+			var page_nav = $(e.currentTarget).attr('page-nav');
+			
+			instance.setCurrentNavNum(page_nav);
+			instance.draw();
+			
+			instance.syncCurrentPage();
+		})
 
 		function init(_currentNavNum, totalPageNum, _viewPageNum, _viewNavHalfNum){
 			currentNavNum 	= parseInt(_currentNavNum);
