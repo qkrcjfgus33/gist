@@ -13,7 +13,8 @@ requirejs.config({
         //common
         'getQueryVariable'  : 'common/getQueryVariable',
         'openPopup'         : 'common/openPopup',
-        'joinSrl'           : 'common/joinSrl'
+        'joinSrl'           : 'common/joinSrl',
+        'splitSrl'          : 'common/splitSrl',
 
         //model
         'AtomsphereModel'   : 'model/AtomsphereModel/AtomsphereModel',
