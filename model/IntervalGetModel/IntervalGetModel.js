@@ -1,5 +1,5 @@
-define(['lodash', 'EventEmitter'], 
-    function(_, EventEmitter){
+define(['lodash', 'EventEmitter', 'joinSrl'], 
+    function(_, EventEmitter, joinSrl){
         
     var IntervalGetModel = (function(){
         var instance; //싱글톤 패턴용 변수
@@ -69,19 +69,10 @@ define(['lodash', 'EventEmitter'],
                     data = JSON.parse(decodeURIComponent(data));
                     joinSrl(data);
 
+                    //받은 데이터값을 get data 이름으로 emit 한다.
                     instance.emit('get data', data);
                     instance.play();
                 });
-        }
-
-        var latitude, longitude;
-        function joinSrl(data){
-            len = data.length;
-            _.forEach(data, function(item){
-                latitude = item.latitude;
-                longitude = item.longitude;
-                item.srl = [latitude,longitude].join('_');
-            });
         }
     })();
 

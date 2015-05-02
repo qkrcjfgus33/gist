@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define(['jquery', 'splitSrl'], function($, splitSrl){
 	var root_path = "http://" + location.host;
 
 	function AtomsphereModel(){
@@ -19,9 +19,13 @@ define(['jquery'], function($){
 
 		this.loadData = function(input){
 			var deferred = $.Deferred();
-			var sendData = srlConvertData(input.srl);
-			sendData.startPageNum = input.startPageNum;
-			sendData.viewPageNum = input.viewPageNum;
+			var position = splitSrl(input.srl);
+			var sendData = {
+				startPageNum 	: input.startPageNum,
+				viewPageNum		: input.viewPageNum,
+				latitude		: position.latitude,
+				longitude		: position.longitude
+			}
 
 			$.get(root_path+'/loadData.php', sendData)
 				.done(function(data){
@@ -34,18 +38,9 @@ define(['jquery'], function($){
 		}
 
 		this.getTotalPageNum = function(input){
-			var sendData = srlConvertData(input.srl);
+			var sendData = splitSrl(input.srl);
 
 			return $.get(root_path+'/getTotalPageNum.php', sendData);
-		}
-	}
-
-	function srlConvertData(srl){
-		console.log(srl);
-		var srl_data = srl.split('_');
-		return{
-			latitude 	: srl_data[0],
-			longitude 	: srl_data[1]
 		}
 	}
 
