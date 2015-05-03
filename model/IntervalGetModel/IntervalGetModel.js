@@ -1,6 +1,7 @@
 define(['lodash', 'EventEmitter', 'joinSrl'], 
     function(_, EventEmitter, joinSrl){
-        
+    var root_path = "http://" + location.host;
+
     var IntervalGetModel = (function(){
         var instance; //싱글톤 패턴용 변수
         
@@ -64,7 +65,7 @@ define(['lodash', 'EventEmitter', 'joinSrl'],
          * event 패턴으로. 외부에선 oDataController.on('getData', callback) 함수로 emit된 값을 받을수 있다.
          */
         function getData(){
-            $.get("./sampleRandomData.php")
+            $.get(root_path+"/model/IntervalGetModel/loadData.php")
                 .done(function(data) {
                     data = JSON.parse(decodeURIComponent(data));
                     joinSrl(data);

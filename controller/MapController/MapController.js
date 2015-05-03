@@ -3,18 +3,18 @@ define([],function(){
 	function MapController(oIntervalGetModel, oMapView){
 
 		var viewList = [
-		    'area name',
-		    'water temperature', 
+		    'name',
+		    '수온', 
 		    'pH', 
-		    'salinity', 
-		    'battery voltage'
+		    '염분', 
+		    '전압'
 		];
         var transList = {
-            'area name'         : '장소',
-            'water temperature' : '수온',
+            'name'         		: '장소',
+            '수온' 				: '수온',
             'pH'                : 'pH',
-            'salinity'          : '염분',
-            'battery voltage'   : '전압'
+            '염분'          		: '염분',
+            '전압'   				: '전압'
         };
 		var latitude = 35.225183;
 		var longitude = 126.843047;

@@ -1,91 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+
 <?php
-echo_error();
-
-$data = $_GET['data'];
+//echo_error();
+/*
 $ip = $_SERVER['REMOTE_ADDR'];
+print_log('connect ip: '.$ip);
 if($ip != '127.0.0.1'){
-	echo_error();
-}
-echo 'pass';
-
-if(!checkData($data)){
-	echo_error();
-};
-
-function checkData($data){
-	if(!is_array($data)){
-		return false;
-	}
-	foreach($data as $value){
-		if(!isset($value['area name'])){
-			return false;
-		}
-		if(!preg_match("/^\d{4}\-\d{2}\-\d{2}$/i",
-			$value['date'])){
-			return false;
-		}
-		if(!preg_match("/^\d{2}\:\d{2}\:\d{2}$/i",
-			$value['time'])){
-			return false;
-		}
-		return true;
-	}
-
-}
-
-function echo_error(){
-	echo 'error!';
 	exit();
 }
+*/
 
-$servername = "localhost";
-$username = "gist";
-$password = "qF5asL7umdsaPqXv";
-$dbname = "gist";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->query("set names utf8");
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
 
-//setID($conn, $data);
-insertData($conn, $data);
+$intervalMilliseconds = 5000;
 
-function insertData($conn, $data){
-	foreach($data as &$value){
-		$query = sprintf("INSERT INTO `gist`.`atmosphere` (`latitude`, `longitude`, `date`, `time`, `water temperature`, `pH`, `salinity`, `battery voltage`) VALUES ('%f', '%f', '%s', '%s', '%f', '%f', '%f', '%f');",
-		            (float)$value['latitude'],
-		            (float)$value['longitude'],
-		            $value['date'],
-		            $value['time'],
-		            (float)$value['water temperature'],
-		            (float)$value['pH'],
-		            (float)$value['salinity'],
-		            (float)$value['battery voltage']);
-		$result = $conn->query($query);
+//setInterval(insert, $intervalMilliseconds);
+insert();
+
+function insert(){
+	$servername = "localhost";
+	$username = "gist";
+	$password = "qF5asL7umdsaPqXv";
+	$dbname = "gist";
+
+	$now = date("Y-m-d H:i:s",time());
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn->query("set names utf8");
+
+	// Check connection
+	if ($conn->connect_error) {
+		print_log("Connection failed: " . $conn->connect_error);
+	    die();
+	} 
+	print_log("Connected successfully");
+
+	$query = "SELECT * FROM  `atmosphere`";
+
+	$result = $conn->query($query);
+	$atomosphereData = array();
+
+	if ($result->num_rows > 0) {
+	    // atomosphereData atomosphereData of each row
+	    while($row = $result->fetch_assoc()) {
+	    	$atomosphereData[$row['name']] = $row['id'];
+	    }
 	}
-}
-/*
-function setID($conn, &$data){
-	foreach($data as &$value){
-		$query = sprintf("SELECT id FROM  `area` WHERE  `latitude` = %f AND  `longitude` = %f LIMIT 0 , 1",
-		            (float)$value['latitude'],
-		            (float)$value['longitude']);
-		$result = $conn->query($query);
 
-		if ($result->num_rows > 0) {
-		    // output data of each row
-		    while($row = $result->fetch_assoc()) {
-		        $value['id'] = $row['id'];
-		    }
-		} else {
-		    echo_error();
+
+
+
+	print_log('');
+	print_log('');
+
+
+
+
+	$query = "SELECT * FROM  `buoy` WHERE  `activity` =1";
+
+	$result = $conn->query($query);
+	$bouyData = array();
+
+	if ($result->num_rows > 0) {
+	    // bouyData bouyData of each row
+	    while($row = $result->fetch_assoc()) {
+	    	array_push($bouyData, array(
+	    		'id' 		=> $row['id'],
+	    		'name' 		=> $row['name'],
+	    		'latitude' 	=> $row['latitude'],
+	    		'longitude' => $row['longitude'],
+	    	));
+	    }
+	}
+
+	print_log('');
+	print_log('');
+
+
+	print_log(print_r($atomosphereData, true));
+
+
+
+	print_log(print_r($bouyData, true));
+
+
+	print_log('');
+	print_log('');
+
+	print_log('query list');
+
+	foreach($bouyData as $bouyDataKey => $bouyDataVal){
+		foreach($atomosphereData as $atomosphereDataKey => $atomosphereID){
+			sprintf("SELECT id FROM  `area` WHERE  `latitude` = %f AND  `longitude` = %f LIMIT 0 , 1",$latitude,$longitude);
+			$query = sprintf("INSERT INTO `gist`.`atmosphere_data` (`buoy_id`, `atomsphere_id`, `data`, `datetime`) VALUES ('%d', '%d', '%f', '%s');",
+				$bouyDataVal['id'], $atomosphereID, mt_rand(30000, 200000)/10000, $now);
+			$result = $conn->query($query);
+			
+			print_log($query);
 		}
 	}
-}*/
+}
+
+function print_log($log_txt){
+	$log_dir = "log";
+	echo $log_dir."/log.txt";
+	$log_file = fopen($log_dir."/log.txt", "a");  
+	fwrite($log_file, $log_txt."\r\n");  
+	fclose($log_file); 
+}
+
+function setInterval($f, $milliseconds)
+{
+    $seconds=(int)$milliseconds/1000;
+    while(true)
+    {
+        $f();
+        sleep($seconds);
+    }
+}
 ?>
+
+<script>
+var i = 60;
+document.body.innerHTML = i + '초 후 insert';
+setInterval(function(){
+	i--;
+	document.body.innerHTML = i + '초 후 insert';
+	}, 1000);
+	setTimeout(function(){
+		location.reload();
+	}, i * 1000);
+</script>
+
+</body>
+</html>

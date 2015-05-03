@@ -6,7 +6,7 @@ define([],function(){
 
 		var drawOption = {
 			secondList : [10, 5, 1],
-			unit: '초'
+			unit: '분'
 		}
 
 		function init(){

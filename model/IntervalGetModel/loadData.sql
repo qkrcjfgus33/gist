@@ -1,0 +1,1 @@
+SELECT atmosphere.name as atmosphere_name, data FROM `atmosphere_data` left join `buoy` on buoy.id = atmosphere_data.buoy_id left join `atmosphere` on atmosphere.id = atmosphere_data.atomsphere_id WHERE `atmosphere_data`.`datetime` =  '2015-05-03 19:59:40' AND `buoy_id` = 1

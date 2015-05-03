@@ -4,22 +4,20 @@ define(['jquery', 'openPopup'],function($, openPopup){
 
         var drawOption = {
             viewList    : [
-                'area name', 
-                'date', 
-                'time', 
-                'water temperature', 
+                'name', 
+                'datetime', 
+                '수온', 
                 'pH', 
-                'salinity', 
-                'battery voltage'
+                '염분', 
+                '전압'
             ],
             transList   : {
-                'area name'         : '장소',
-                'date'              : '날짜',
-                'time'              : '시간',
-                'water temperature' : '수온',
+                'name'              : '장소',
+                'datetime'          : '날짜',
+                '수온'               : '수온',
                 'pH'                : 'pH',
-                'salinity'          : '염분',
-                'battery voltage'   : '전압'
+                '염분'               : '염분',
+                '전압'               : '전압'
             }
         }
 

@@ -9,11 +9,6 @@ define(['jquery', 'splitSrl'], function($, splitSrl){
 			//필요하나?
 		}
 		this.saveData = function(data){
-			
-			$.get(root_path+'/saveData.php', {data: data})
-				.done(function(output){
-					console.log(output);
-				});
 
 		}
 
