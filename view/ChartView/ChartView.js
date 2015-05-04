@@ -20,8 +20,6 @@ define(['jquery', 'c3'],
 			for(var i = 0 ; i < len ; i++){
 				data[i].datetime = +new Date(data[i].datetime);
 			}
-
-			console.log(data);
 			
 			var chart = c3.generate({
 				bindto: $ChartContainer[0],
@@ -48,21 +46,6 @@ define(['jquery', 'c3'],
 
 			return chart;
 		}
-	}
-
-	function getDatetime(data, i){
-		var date = (data[i]['date']).split('-');
-		var time = (data[i]['time']).split(':');
-		var dateTime = new Date();
-
-		dateTime.setFullYear(date[0]);
-		dateTime.setMonth(date[1]);
-		dateTime.setDate(date[2]);
-		dateTime.setHours(time[0]);
-		dateTime.setMinutes(time[1]);
-		dateTime.setSeconds(time[2]);
-
-		return (+dateTime);
 	}
 
 	return ChartView;

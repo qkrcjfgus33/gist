@@ -1,12 +1,13 @@
 function appInit(){
 
 	//init들 실행.
-	requirejs(['intervalInit', 'tableInit', 'mapInit'],
-		function(intervalInit, tableInit, mapInit){
-
+	requirejs(['intervalInit', 'minMaxInit', 'tableInit', 'mapInit'],
+		function(intervalInit, minMaxInit, tableInit, mapInit){
+			
 		intervalInit();
 		tableInit();
 		mapInit();
+		minMaxInit();
 	});
 
 	requirejs(['jquery'], function($){

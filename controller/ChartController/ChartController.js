@@ -1,3 +1,4 @@
+var chart;
 define(['getQueryVariable', 'datetimeFormat'],function(getQueryVariable, datetimeFormat){
 
 	function ChartController(oAtomsphereModel, oChartView, oTableView, oPageNaveView){
@@ -44,7 +45,7 @@ define(['getQueryVariable', 'datetimeFormat'],function(getQueryVariable, datetim
 
 				oAtomsphereModel.loadData(sendData)
 					.done(function(data){
-						oChartView.draw({
+						chart = oChartView.draw({
 							title: gets.title,
 							data: data
 						});

@@ -25,6 +25,20 @@ define(['jquery', 'splitSrl'], function($, splitSrl){
 			return deferred.promise();
 		}
 
+		this.loadAtomsphereList = function(){
+			var deferred = $.Deferred();
+			console.log('loadAtomsphereList');
+			$.get(root_path+'/loadAtomsphereList.php')
+				.done(function(data){
+					deferred.resolve(JSON.parse(decodeURIComponent(data)));
+				})
+				.fail(function(err){
+					deferred.reject(err);
+				});
+
+			return deferred.promise();
+		}
+
 		this.getTotalPageNum = function(sendData){
 
 			return $.get(root_path+'/getTotalPageNum.php', sendData);

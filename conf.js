@@ -36,12 +36,14 @@ requirejs.config({
         'TableController'   : 'controller/TableController/TableController',
         'IntervalGetController'   : 'controller/IntervalGetController/IntervalGetController',
         'ChartController'   : 'controller/ChartController/ChartController',
+        'MinMaxTableController' : 'controller/MinMaxTableController/MinMaxTableController',
 
         //init
-        'intervalInit'  : 'init/intervalInit/intervalInit',
-        'tableInit'     : 'init/tableInit/tableInit',
-        'mapInit'       : 'init/mapInit/mapInit',
-        'chartInit'     : 'init/chartInit/chartInit'
+        'intervalInit'      : 'init/intervalInit/intervalInit',
+        'tableInit'         : 'init/tableInit/tableInit',
+        'mapInit'           : 'init/mapInit/mapInit',
+        'chartInit'         : 'init/chartInit/chartInit',
+        'minMaxTableInit'   : 'init/minMaxTableInit/minMaxTableInit'
     }
 });
 
