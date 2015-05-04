@@ -1,5 +1,5 @@
-define(['lodash', 'EventEmitter', 'joinSrl'], 
-    function(_, EventEmitter, joinSrl){
+define(['lodash', 'EventEmitter'], 
+    function(_, EventEmitter){
     var root_path = "http://" + location.host;
 
     var IntervalGetModel = (function(){
@@ -68,10 +68,10 @@ define(['lodash', 'EventEmitter', 'joinSrl'],
             $.get(root_path+"/model/IntervalGetModel/loadData.php")
                 .done(function(data) {
                     data = JSON.parse(decodeURIComponent(data));
-                    joinSrl(data);
 
                     //받은 데이터값을 get data 이름으로 emit 한다.
                     instance.emit('get data', data);
+
                     instance.play();
                 });
         }

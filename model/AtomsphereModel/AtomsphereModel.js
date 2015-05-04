@@ -12,15 +12,8 @@ define(['jquery', 'splitSrl'], function($, splitSrl){
 
 		}
 
-		this.loadData = function(input){
+		this.loadData = function(sendData){
 			var deferred = $.Deferred();
-			var position = splitSrl(input.srl);
-			var sendData = {
-				startPageNum 	: input.startPageNum,
-				viewPageNum		: input.viewPageNum,
-				latitude		: position.latitude,
-				longitude		: position.longitude
-			}
 
 			$.get(root_path+'/loadData.php', sendData)
 				.done(function(data){
@@ -32,8 +25,7 @@ define(['jquery', 'splitSrl'], function($, splitSrl){
 			return deferred.promise();
 		}
 
-		this.getTotalPageNum = function(input){
-			var sendData = splitSrl(input.srl);
+		this.getTotalPageNum = function(sendData){
 
 			return $.get(root_path+'/getTotalPageNum.php', sendData);
 		}

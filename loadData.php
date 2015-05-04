@@ -12,31 +12,50 @@ $conn->query("set names utf8");
 if ($conn->connect_error) {
     echo_error();
 } 
+$bouy_id = (int)$_GET['bouy_id'];
+$startDatetime = $_GET['startDatetime'];
+$endDatetime = $_GET['endDatetime'];
 
-$latitude = (float)$_GET['latitude'];
-$longitude = (float)$_GET['longitude'];
-$startPageNum = (int)$_GET['startPageNum'];
-$viewPageNum = (int)$_GET['viewPageNum'];
+$startDatetime = DateTime::createFromFormat('Y-m-d H:i', $startDatetime);
+$startDatetime = $startDatetime->format('Y-m-d H:i:s');
 
-if($latitude < 0 || $longitude < 0 || $startPageNum < 0 || $viewPageNum < 0 ){
+$endDatetime = DateTime::createFromFormat('Y-m-d H:i', $endDatetime);
+$endDatetime = $endDatetime->format('Y-m-d H:i:s');
+
+if($bouy_id < 0 ){
     echo_error();
 }
 
-$query = sprintf("SELECT * FROM  `atmosphere` WHERE  `latitude` = %f AND  `longitude` = %f LIMIT %d , %d", $latitude, $longitude, $startPageNum, $viewPageNum);
+$query = "SELECT 
+atmosphere.name as atmosphere_name, 
+atmosphere_data.datetime as datetime, 
+atmosphere.id as atmosphere_id, 
+data
+FROM `atmosphere_data` 
+left join `buoy` on buoy.id = atmosphere_data.buoy_id 
+left join `atmosphere` on atmosphere.id = atmosphere_data.atomsphere_id 
+WHERE  `datetime` <=  '".$endDatetime."'
+AND `datetime` >=  '".$startDatetime."'
+AND `buoy_id` = ".$bouy_id;
+
+//echo $query;
 $result = $conn->query($query);
 $data = array();
 
+$checkedDatetime;
+$dataPart;
 if ($result->num_rows > 0) {
     // data data of each row
     while($row = $result->fetch_assoc()) {
-        array_push($data, array(
-        	'date'				=>$row['date'],
-        	'time'				=>$row['time'],
-        	'water temperature'	=>$row['water temperature'],
-        	'pH'				=>$row['pH'],
-        	'salinity'			=>$row['salinity'],
-        	'battery voltage'	=>$row['battery voltage']
-        ));
+        if($checkedDatetime != $row['datetime']){
+            $checkedDatetime = $row['datetime'];
+            if(is_array($dataPart)){
+                array_push($data, $dataPart);
+            }
+            $dataPart = array();
+            $dataPart['datetime'] = $checkedDatetime;
+        }
+        $dataPart[$row['atmosphere_name']] = $row['data'];
     }
 }
 
@@ -46,19 +65,4 @@ function echo_error(){
     echo 'error!';
     exit();
 }
-/*
-function getAreaID($conn, $latitude, $longitude){
-    $query = sprintf("SELECT id FROM  `area` WHERE  `latitude` = %f AND  `longitude` = %f LIMIT 0 , 1",$latitude,$longitude);
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            return (int)$row['id'];
-        }
-    } else {
-        echo_error();
-    }
-}
-*/
 ?>

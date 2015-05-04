@@ -9,6 +9,8 @@ requirejs.config({
         'jquery'            : 'lib/jQuery/jQuery',
         'lodash'            : 'lib/lodash/lodash',
         'tpl'               : 'lib/requirejs-tpl/tpl',
+        'MarkerWithLabel'   : 'lib/MarkerWithLabel/MarkerWithLabel',
+        'datetimepicker'    : 'lib/jquery.datetimepicker/jquery.datetimepicker',
 
         //common
         'getQueryVariable'  : 'common/getQueryVariable',

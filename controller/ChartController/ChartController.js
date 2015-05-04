@@ -4,35 +4,29 @@ define(['getQueryVariable'],function(getQueryVariable){
 		this.init = init;
 
 		var gets = getQueryVariable();
-		var viewNavHalfNum = 5;
-		var viewPageNum = 10;
-		var currentNavNum = 0;
 
 		function init(){
 			
 			oAtomsphereModel.getTotalPageNum(gets)
 				.done(function(totalPageNum){
-				    oPageNaveView.init(currentNavNum, totalPageNum, viewPageNum, viewNavHalfNum);
 					oPageNaveView.draw();
-					oPageNaveView.syncCurrentPage();
+					oPageNaveView.syncPage();
 				});
 			
-			oPageNaveView.on('syncCurrentPage', function(_currentNavNum){
-				currentNavNum = _currentNavNum;
+			oPageNaveView.on('syncPage', function(startDatetime, endDatetime){
+				console.log(startDatetime, endDatetime);
 				var sendData = {
-					srl				: gets.srl,
-					startPageNum 	: viewPageNum * currentNavNum,
-					viewPageNum		: viewPageNum
+					bouy_id			: gets.bouy_id,
+					startDatetime 	: startDatetime,
+					endDatetime		: endDatetime
 				};
 
 				oAtomsphereModel.loadData(sendData)
 					.done(function(data){
-						if(currentNavNum === _currentNavNum){
-							oChartView.draw({
-								title: gets.title,
-								data: data
-							});
-						}
+						oChartView.draw({
+							title: gets.title,
+							data: data
+						});
 					});
 				});
 		}

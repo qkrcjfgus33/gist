@@ -12,22 +12,18 @@ $conn->query("set names utf8");
 if ($conn->connect_error) {
     echo_error();
 }
+$bouy_id = (int)$_GET['bouy_id'];
 
-$latitude = (float)$_GET['latitude'];
-$longitude = (float)$_GET['longitude'];
-
-if($latitude < 0 || $longitude < 0 ){
-    echo_error();
-}
-
-$query = sprintf("SELECT count(latitude) FROM  `atmosphere` WHERE  `latitude` = %f AND  `longitude` = %f", $latitude, $longitude);
+$query = "SELECT count(buoy_id) 
+FROM  `atmosphere_data` 
+WHERE  `buoy_id` =".$bouy_id;
 
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
     // data data of each row
     while($row = $result->fetch_assoc()) {
-        $totalPageNum = ((int)$row['count(latitude)']) - 1;
+        $totalPageNum = ((int)$row['count(buoy_id)']) - 1;
         break;
     }
 }else{

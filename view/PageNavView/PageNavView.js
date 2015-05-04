@@ -1,4 +1,4 @@
-define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl'],
+define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl', 'datetimepicker'],
 	function($, _, EventEmitter, pageNavTpl){
 
 	var id = 0;
@@ -8,120 +8,100 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl']
 	}
 
 	function PageNaveView(dom){
-		
-		this.init    			= init;
-		this.setCurrentNavNum  	= setCurrentNavNum;
-		this.syncCurrentPage    = syncCurrentPage;
-		this.draw 				= draw;
+
+		this.syncPage 	= syncPage;
+		this.draw 		= draw;
 
 		var $container = $(dom);
 		var instance = this;
-		var currentNavNum = 0;
-		var lastPageNum, viewPageNum,
-			lastNavNum, viewNavHalfNum, viewNavNum, 
-			startNavNum, endNavNum, 
-			hasPreNav, hasNextNav;
+		var format = 'Y-m-d H:i';
+		var now = new Date();
 
-		$container.on('click', '[page-nav]' , function(e){
-			var page_nav = $(e.currentTarget).attr('page-nav');
-			
-			instance.setCurrentNavNum(page_nav);
-			instance.draw();
-			
-			instance.syncCurrentPage();
-		})
+		var endDatetime =  new Date(now);
+		var endDatetimeStr = datetimeFormat(endDatetime, format);
+		
+		now.setHours(now.getHours() - 1);
 
-		function init(_currentNavNum, totalPageNum, _viewPageNum, _viewNavHalfNum){
-			currentNavNum 	= parseInt(_currentNavNum);
-			lastPageNum 	= parseInt(totalPageNum) - 1;
-			viewPageNum 	= parseInt(_viewPageNum);
-			viewNavHalfNum 	= parseInt(_viewNavHalfNum);
-
-			_init();
-			_resetValues();
-		}
-
-		function _init(){
-			viewNavNum = viewNavHalfNum * 2 + 1;
-			lastNavNum = Math.ceil((lastPageNum + 1) / viewNavNum - 1);
-		}
-
-		function setCurrentNavNum(page_nav){
-			if(page_nav === 'start'){
-				currentNavNum = 0;
-			}else if(page_nav === 'pre-step'){
-				currentNavNum = startNavNum - 1;
-			}else if(page_nav === 'pre-page'){
-				currentNavNum --;
-			}else if(page_nav === 'next-page'){
-				currentNavNum ++;
-			}else if(page_nav === 'next-step'){
-				currentNavNum = endNavNum + 1;
-			}else if(page_nav === 'end'){
-				currentNavNum = lastNavNum;
-			}else{
-				currentNavNum = parseInt(page_nav);
-			}
-
-			_resetValues();
-		}
+		var startDatetime = new Date(now);
+		var startDatetimeStr = datetimeFormat(startDatetime, format);
 
 		function draw(){
-			$container.html(pageNavTpl({
-				startNavNum		: startNavNum,
-				endNavNum		: endNavNum,
-				hasPreNav		: hasPreNav,
-				hasNextNav		: hasNextNav,
-				currentNavNum 	: currentNavNum
-			}));
+			$container.html(pageNavTpl({}));
+
+			$('#start_datetimepicker').datetimepicker({
+				lang:'ko',
+				format: format,
+				onChangeDateTime:function(dp,$input){
+				   startDatetimeStr = $input.val();
+				}
+			}).val(startDatetimeStr);
+
+			$('#end_datetimepicker').datetimepicker({
+				lang:'ko',
+				format: format,
+				onChangeDateTime:function(dp,$input){
+				   endDatetimeStr = $input.val();
+				}
+			}).val(endDatetimeStr);
+
+			$('#befor').on('click', function(){
+				startDatetime.setHours(startDatetime.getHours() - 1);
+				endDatetime.setHours(endDatetime.getHours() - 1);
+				
+				startDatetimeStr = datetimeFormat(startDatetime, format);
+				endDatetimeStr = datetimeFormat(endDatetime, format);
+
+				$('#start_datetimepicker').val(startDatetimeStr);
+				$('#end_datetimepicker').val(endDatetimeStr);
+				
+				syncPage();
+			});
+
+			$('#after').on('click', function(){
+				startDatetime.setHours(startDatetime.getHours() + 1);
+				endDatetime.setHours(endDatetime.getHours() + 1);
+				
+				startDatetimeStr = datetimeFormat(startDatetime, format);
+				endDatetimeStr = datetimeFormat(endDatetime, format);
+
+				$('#start_datetimepicker').val(startDatetimeStr);
+				$('#end_datetimepicker').val(endDatetimeStr);
+				
+				syncPage();
+			});
+
+			$('#move').on('click', function(){
+				syncPage();
+			});
 		}
 
 
-		function syncCurrentPage(){
-			instance.emit('syncCurrentPage', currentNavNum);
-		}
-
-		function _checkCurrentNavNum(){
-			if(currentNavNum < 0){
-				currentNavNum = 0;
-			}
-			console.log(lastNavNum);
-			if(currentNavNum > lastNavNum){
-				currentNavNum = lastNavNum;
-			}
-		}
-
-		function _resetValues(){
-			_checkCurrentNavNum();
-
-			var remainderNavNum;
-			hasPreNav = true;
-			hasNextNav = true;
-
-			startNavNum = currentNavNum - viewNavHalfNum;
-			remainderNavNum = viewNavHalfNum;
-			if(startNavNum <= 0){
-				remainderNavNum += (-startNavNum)
-				startNavNum = 0;
-				hasPreNav = false;
-			}
-
-			endNavNum = currentNavNum + remainderNavNum;
-
-			if(endNavNum >= lastNavNum){
-				startNavNum -= (endNavNum - lastNavNum);
-				endNavNum = lastNavNum
-				hasNextNav = false;
-			}
-
-			if(startNavNum <= 0){
-				startNavNum = 0;
-			}
+		function syncPage(){
+			instance.emit('syncPage', startDatetimeStr, endDatetimeStr);
 		}
 	}
 
 	//EventEmitter 클래스 상속
 	PageNaveView.prototype = _.clone(EventEmitter.prototype);
+
+	function datetimeFormat(d, f) {
+	    return f.replace(/(Y|m|d|H|i|s)/gi, function($1) {
+	        switch ($1) {
+	            case "Y": return d.getFullYear();
+	            case "m": return fillzero((d.getMonth() + 1),2);
+	            case "d": return fillzero(d.getDate(), 2);
+	            case "H": return fillzero(d.getHours(), 2);
+	            case "i": return fillzero(d.getMinutes(), 2);
+	            case "s": return fillzero(d.getSeconds(), 2);
+	            default: return $1;
+	        }
+	    });
+
+	    function fillzero(obj, len) {
+		    obj= '000000000000000'+obj;
+		    return obj.substring(obj.length-len);
+	    }
+	};
 
 	return PageNaveView;
 });

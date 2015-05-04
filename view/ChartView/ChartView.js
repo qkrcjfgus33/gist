@@ -16,42 +16,33 @@ define(['jquery', 'c3'],
 			var title = option.title;
 			var data = option.data;
 
-			var datetimeList = ['datetime'];
-			var waterTemperatureList = ['수온'];
-			var pHList = ['Ph'];
-			var salinity = ['염분'];
-			var batteryVoltage = ['전압'];
-
 			var len = data.length;
-			for(var i = 0 ; i<len ; i++){
-				datetimeList.push(getDatetime(data, i));
-				waterTemperatureList.push(data[i]['water temperature']);
-				pHList.push(data[i]['pH']);
-				salinity.push(data[i]['salinity']);
-				batteryVoltage.push(data[i]['battery voltage']);
+			for(var i = 0 ; i < len ; i++){
+				data[i].datetime = +new Date(data[i].datetime);
 			}
 
+			console.log(data);
+			
 			var chart = c3.generate({
 				bindto: $ChartContainer[0],
 				data: {
-					x: 'datetime',
 					//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-					columns: [
-						datetimeList,
-						waterTemperatureList,
-						pHList,
-						salinity,
-						batteryVoltage]//
-					},
-					axis: {
-					    x: {
-					        type: 'timeseries',
-					        tick: {
-					            format: '%Y-%m-%d %H:%M:%S'
-					        }
-					    }
+					json: data,
+					keys: {
+						x: 'datetime',
+					      // x: 'name', // it's possible to specify 'x' when category axis
+					      value: ['수온', 'pH', '염분', '전압'],
 					}
-	    		});
+				},
+				axis: {
+				    x: {
+				        type: 'timeseries',
+				        tick: {
+				            format: '%Y-%m-%d %H:%M:%S'
+				        }
+				    }
+				}
+    		});
 
 			$TitleContainer.text(title);
 
