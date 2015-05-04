@@ -17,6 +17,7 @@ requirejs.config({
         'openPopup'         : 'common/openPopup',
         'joinSrl'           : 'common/joinSrl',
         'splitSrl'          : 'common/splitSrl',
+        'datetimeFormat'    : 'common/datetimeFormat',
 
         //model
         'AtomsphereModel'   : 'model/AtomsphereModel/AtomsphereModel',

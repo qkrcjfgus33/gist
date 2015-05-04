@@ -1,5 +1,5 @@
-define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl', 'datetimepicker'],
-	function($, _, EventEmitter, pageNavTpl){
+define(['jquery', 'lodash', 'EventEmitter', 'datetimeFormat', 'tpl!/view/PageNavView/pageNav.tpl', 'datetimepicker'],
+	function($, _, EventEmitter, datetimeFormat, pageNavTpl){
 
 	var id = 0;
 
@@ -83,25 +83,6 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!/view/PageNavView/pageNav.tpl',
 
 	//EventEmitter 클래스 상속
 	PageNaveView.prototype = _.clone(EventEmitter.prototype);
-
-	function datetimeFormat(d, f) {
-	    return f.replace(/(Y|m|d|H|i|s)/gi, function($1) {
-	        switch ($1) {
-	            case "Y": return d.getFullYear();
-	            case "m": return fillzero((d.getMonth() + 1),2);
-	            case "d": return fillzero(d.getDate(), 2);
-	            case "H": return fillzero(d.getHours(), 2);
-	            case "i": return fillzero(d.getMinutes(), 2);
-	            case "s": return fillzero(d.getSeconds(), 2);
-	            default: return $1;
-	        }
-	    });
-
-	    function fillzero(obj, len) {
-		    obj= '000000000000000'+obj;
-		    return obj.substring(obj.length-len);
-	    }
-	};
 
 	return PageNaveView;
 });

@@ -1,11 +1,13 @@
 define([
     'AtomsphereModel',
     'ChartView',
+    'TableView',
     'PageNavView',
     'ChartController'
 ],function(
     AtomsphereModel,
     ChartView,
+    TableView,
     PageNavView,
     ChartController)
 {
@@ -13,7 +15,8 @@ define([
         var oAtomsphereModel    = new AtomsphereModel();
         var oChartView          = new ChartView('#chart');
         var oPageNavView        = new PageNavView('#nav');
-        var oChartController    = new ChartController(oAtomsphereModel, oChartView, oPageNavView);
+        var oTableView          = new TableView('#detailTable');
+        var oChartController    = new ChartController(oAtomsphereModel, oChartView, oTableView, oPageNavView);
        
         oChartController.init();
     }

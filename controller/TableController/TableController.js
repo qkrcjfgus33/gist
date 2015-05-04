@@ -4,16 +4,16 @@ define(['jquery', 'openPopup'],function($, openPopup){
 
         var drawOption = {
             viewList    : [
+                'no',
                 'name', 
-                'datetime', 
                 '수온', 
                 'pH', 
                 '염분', 
                 '전압'
             ],
             transList   : {
-                'name'              : '장소',
-                'datetime'          : '날짜',
+                'no'                : '부이 No',
+                'name'              : '위치',
                 '수온'               : '수온',
                 'pH'                : 'pH',
                 '염분'               : '염분',
@@ -35,6 +35,17 @@ define(['jquery', 'openPopup'],function($, openPopup){
         function init(){
             //Init Table
             oIntervalGetModel.on('get data', function(data){
+                var len = data.length;
+                for(var i = 0 ; i < len ; i++ ){
+                    if(data[i].activity === '0'){
+                        _.pullAt(data, i);
+                        i--;
+                        len--;
+                    }else{
+                        data[i].no = i+1;
+                    }
+                } 
+
                 drawOption.data = data;
                 oTableView.draw(drawOption);
             });

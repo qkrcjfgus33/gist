@@ -16,10 +16,12 @@ $bouy_id = (int)$_GET['bouy_id'];
 $startDatetime = $_GET['startDatetime'];
 $endDatetime = $_GET['endDatetime'];
 
-$startDatetime = DateTime::createFromFormat('Y-m-d H:i', $startDatetime);
+$timezone = new DateTimeZone('UTC'); 
+
+$startDatetime = DateTime::createFromFormat('Y-m-d H:i', $startDatetime, $timezone);
 $startDatetime = $startDatetime->format('Y-m-d H:i:s');
 
-$endDatetime = DateTime::createFromFormat('Y-m-d H:i', $endDatetime);
+$endDatetime = DateTime::createFromFormat('Y-m-d H:i', $endDatetime, $timezone);
 $endDatetime = $endDatetime->format('Y-m-d H:i:s');
 
 if($bouy_id < 0 ){
