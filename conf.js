@@ -13,37 +13,29 @@ requirejs.config({
         'datetimepicker'    : 'lib/jquery.datetimepicker/jquery.datetimepicker',
 
         //common
-        'getQueryVariable'  : 'common/getQueryVariable',
-        'openPopup'         : 'common/openPopup',
-        'joinSrl'           : 'common/joinSrl',
-        'splitSrl'          : 'common/splitSrl',
-        'datetimeFormat'    : 'common/datetimeFormat',
+        'customLinkPopup'   : 'common/customLinkPopup',
 
         //model
-        'AtomsphereModel'   : 'model/AtomsphereModel/AtomsphereModel',
-        'IntervalGetModel'  : 'model/IntervalGetModel/IntervalGetModel',
-        'MinMaxModel'       : 'model/MinMaxModel/MinMaxModel',
+        'Model'             : 'model/Model/Model',
 
         //view
-        'MapView'           : 'view/MapView/MapView',
+        'TimeSelectView'    : 'view/TimeSelectView/TimeSelectView',
+        'IntervalView'      : 'view/IntervalView/IntervalView',
+        'AlramView'         : 'view/AlramView/AlramView',
         'TableView'         : 'view/TableView/TableView',
-        'IntervalGetView'   : 'view/IntervalGetView/IntervalGetView',
-        'ChartView'         : 'view/ChartView/ChartView',
-        'PageNavView'       : 'view/PageNavView/PageNavView',
+        'MapView'           : 'view/MapView/MapView',
 
         //controller
-        'MapController'     : 'controller/MapController/MapController',
-        'TableController'   : 'controller/TableController/TableController',
-        'IntervalGetController'   : 'controller/IntervalGetController/IntervalGetController',
-        'ChartController'   : 'controller/ChartController/ChartController',
-        'MinMaxTableController' : 'controller/MinMaxTableController/MinMaxTableController',
-
+        'IntervalGetController'     : 'controller/IntervalGetController/IntervalGetController',
+        'MinMaxAlramController'     : 'controller/MinMaxAlramController/MinMaxAlramController',
+        'TableController'           : 'controller/TableController/TableController',
+        'MapController'             : 'controller/MapController/MapController',
+        
         //init
         'intervalInit'      : 'init/intervalInit/intervalInit',
+        'minMaxInit'        : 'init/minMaxInit/minMaxInit',
         'tableInit'         : 'init/tableInit/tableInit',
-        'mapInit'           : 'init/mapInit/mapInit',
-        'chartInit'         : 'init/chartInit/chartInit',
-        'minMaxTableInit'   : 'init/minMaxTableInit/minMaxTableInit'
+        'mapInit'           : 'init/mapInit/mapInit'
     }
 });
 

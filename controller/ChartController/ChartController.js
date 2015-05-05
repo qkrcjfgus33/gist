@@ -1,4 +1,3 @@
-var chart;
 define(['getQueryVariable', 'datetimeFormat'],function(getQueryVariable, datetimeFormat){
 
 	function ChartController(oAtomsphereModel, oChartView, oTableView, oPageNaveView){

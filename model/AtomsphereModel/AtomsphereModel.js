@@ -13,30 +13,15 @@ define(['jquery', 'splitSrl'], function($, splitSrl){
 		}
 
 		this.loadData = function(sendData){
-			var deferred = $.Deferred();
-
-			$.get(root_path+'/loadData.php', sendData)
-				.done(function(data){
-					deferred.resolve(JSON.parse(decodeURIComponent(data)));
-				})
-				.fail(function(err){
-					deferred.reject(err);
-				});
-			return deferred.promise();
+			return $.getJSON(root_path+'/loadData.php', sendData);
 		}
 
 		this.loadAtomsphereList = function(){
-			var deferred = $.Deferred();
-			console.log('loadAtomsphereList');
-			$.get(root_path+'/loadAtomsphereList.php')
-				.done(function(data){
-					deferred.resolve(JSON.parse(decodeURIComponent(data)));
-				})
-				.fail(function(err){
-					deferred.reject(err);
-				});
+			return $.getJSON(root_path+'/loadAtomsphereList.php');
+		}
 
-			return deferred.promise();
+		this.loadAtomsphereMinMax = function(){
+			return $.getJSON(root_path+'/loadAtomsphereMinMax.php');
 		}
 
 		this.getTotalPageNum = function(sendData){

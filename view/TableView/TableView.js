@@ -23,11 +23,6 @@ define(['jquery', 'lodash', 'EventEmitter', 'tpl!view/TableView/table.tpl'],
 		 */
 		function draw(option){
 			$container.html(tableTpl(option));
-
-			$container.on('click', clickDetailTagList, function(e){
-			    var $eCurrentTarget = $(e.currentTarget);
-			    instance.emit('open detail', $eCurrentTarget.attr('srl'), $eCurrentTarget.attr('title'));
-			});
 		}
 	}
 

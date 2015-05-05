@@ -1,16 +1,16 @@
 define([
-    'IntervalGetModel',
+    'Model',
     'TableView',
     'TableController'
 ],function(
-    IntervalGetModel,
+    Model,
     TableView,
     TableController)
 {
     function tableInit(){
-        var oIntervalGetModel = new IntervalGetModel();
-        var oTableView        = new TableView('#current_table');
-        var oTableController  = new TableController(oIntervalGetModel, oTableView);
+        var oModel              = new Model();
+        var oTableView          = new TableView('#current_table');
+        var oTableController    = new TableController(oModel, oTableView);
         oTableController.init();
     }
     

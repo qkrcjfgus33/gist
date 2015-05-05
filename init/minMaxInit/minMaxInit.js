@@ -1,17 +1,17 @@
 define([
-    'IntervalGetModel',
-    'MinMaxView',
-    'MinMaxController'
+    'Model',
+    'AlramView',
+    'MinMaxAlramController'
 ],function(
-    IntervalGetModel,
-    MinMaxView,
-    MinMaxController)
+    Model,
+    AlramView,
+    MinMaxAlramController)
 {
     function minMaxInit(){
-        var oIntervalGetModel  = new IntervalGetModel();
-        var oMinMaxView        = new MinMaxView('#MinMaxAlram');
-        var oMinMaxController  = new MinMaxController(oIntervalGetModel, oMinMaxView);
-        oMinMaxController.init();
+        var oModel                  = new Model();
+        var oAlramView              = new AlramView('#MinMaxAlram');
+        var oMinMaxAlramController  = new MinMaxAlramController(oModel, oAlramView);
+        oMinMaxAlramController.init();
     }
     
     return minMaxInit;

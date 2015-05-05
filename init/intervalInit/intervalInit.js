@@ -1,16 +1,19 @@
 define([
-    'IntervalGetModel',
-    'IntervalGetView',
-    'IntervalGetController'
+    'Model',
+    'TimeSelectView',
+    'IntervalView',
+    'IntervalGetController',
 ],function(
-    IntervalGetModel,
-    IntervalGetView,
+    Model,
+    TimeSelectView,
+    IntervalView,
     IntervalGetController)
 {
     function intervalInit(){
-        var oIntervalGetModel       = new IntervalGetModel();
-        var oIntervalGetView        = new IntervalGetView('#interval_IO_container');
-        var oIntervalGetController  = new IntervalGetController(oIntervalGetModel, oIntervalGetView);
+        var oModel                      = new Model();
+        var oTimeSelectView             = new TimeSelectView('#interval_IO_container');
+        var oIntervalView               = new IntervalView();
+        var oIntervalGetController      = new IntervalGetController(oModel, oTimeSelectView, oIntervalView);
         oIntervalGetController.init();
     }
     

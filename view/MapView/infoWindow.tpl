@@ -1,6 +1,6 @@
 <h1><%= title %></h1>
-<% _.forEach(viewList, function(key){ %>
+<% _.forEach(transList, function(val, key){ %>
 <% if(info[key] !== undefined){ %>
-<%= transList[key] %> = <%= info[key] %><br>
+<%= val %> = <%= info[key] %><br>
 <% } %>
 <% }) %>

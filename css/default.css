@@ -1,78 +1,49 @@
 .current_map{
 	width: 700px;
 	height: 700px;
+	margin: 50px auto;
 }
 
-.marker_normal {
-	background: rgba(255, 255, 255, 1);
-	box-shadow: 0px 0px 5px #FFF;
-	border: 8px solid #0000FF;
-	height: 12px;
-	width: 12px;
-	border-radius: 50px;
-	margin-left: -10px;
-	margin-top: -10px;
+body{
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 20px;
 }
 
-.marker_normal:hover{
-	height: 14px;
-	width: 14px;
-	margin-left: -11px;
-	margin-top: -11px;
+#interval_IO_container{
+	margin-bottom: 20px;
 }
 
-.marker_hidden {
-	background: rgba(255, 255, 255, 1);
-	box-shadow: 0px 0px 5px #FFF;
-	border: 8px solid #A3BFFF;
-	height: 12px;
-	width: 12px;
-	border-radius: 50px;
-	margin-left: -10px;
-	margin-top: -10px;
+#MinMaxAlram{
+  margin: 10px 0px;
 }
 
-.marker_hidden:hover{
-	height: 14px;
-	width: 14px;
-	margin-left: -11px;
-	margin-top: -11px;
-
-	border: 8px solid #0000FF;
+#MinMaxAlram span{
+	display: inline-block;
+	width: 50px;
+	text-align: center;
 }
 
-.marker_warning {
-	background: rgba(255, 255, 255, 1);
-	box-shadow: 0px 0px 5px #FFF;
-	border: 8px solid #FF0000;
-	height: 12px;
-	width: 12px;
-	border-radius: 50px;
-	margin-left: -10px;
-	margin-top: -10px;
-	-webkit-animation: warning_ani 1s linear infinite alternate; /* Chrome, Safari, Opera */
-	animation: warning_ani 1s linear infinite alternate;
+#MinMaxAlram [alram]{
+	display: inline-block;
+	width: 940px;
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes warning_ani {
-    from {
-		border-color: #0000FF;
-    }
-    to {
-    	border-color: #FF0000;
-    }
+#current_table{
+	width: 100%;
+	max-height: 300px;
+	overflow-y: auto;
 }
 
-@keyframes warning_ani {
-    from {
-		border-color: #0000FF;
-    }
-    to {
-    	border-color: #FF0000;
-    }
+#current_table tr{
+
 }
 
-.marker_warning:hover{
-	
+#current_table th{
+
 }
+
+#current_table td{
+
+}
+

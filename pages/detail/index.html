@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title> 상세페이지 </title>
+	
+	<link href="lib/c3/c3.css" rel="stylesheet" type="text/css">
+	<!-- jquery datetimepicker -->
+	<link href="lib/jquery.datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+	<script src="lib/d3/d3.min.js" charset="utf-8"></script>
+	<script src="lib/c3/c3.min.js"></script>
+	<script src="lib/jQuery/jQuery.js"></script>
+	<script type="text/javascript" src="getData.js"></script>
+
+
+
+<!-- Load c3.css -->
+	<!-- 표 스타일 정의  -->
+	<style type="text/css">
+		table.property {
+			width:100%;
+			margin:0 auto;
+			text-align: center;
+			border-collapse: collapse;
+		}
+		.property th, .property td {padding:5px 10px}
+		.property caption {font-weight:700; font-size:80px; padding:5px; color:#1BA6B2; text-align:left; margin-bottom:5px}
+		.property thead th 
+		{background:#BA5072; color:#fff; text-align:center; border-right:1px solid #fff;
+			border-color:#000000}
+		.property tbody th {background:#fff; text-align:center; width:12%}
+		#detailTable{
+			display: block;
+			width:100%;
+			height: 200px;
+			overflow-y: auto;
+
+		}
+		#detailTable>table{
+			width:100%;
+		}
+	</style>	
+</head>
+<body>
+	<script type="text/javascript">
+		// 메인 홈페이지를 통해 받은 부이id
+		var obj = getQueryVariable();
+		var bouy_id = obj.bouy_id;
+		console.log(bouy_id);
+	</script>
+
+
+	
+
+	<table class="property" border="1">
+		<caption id="Bouyname"> 
+			<script>
+				JSONgetBuoyName(bouy_id).done(function(data){
+        			var NameObj = JSON.parse(decodeURIComponent(data));
+			        var id = document.getElementById("Bouyname");
+			        id.innerHTML = NameObj[0].name;
+
+			     });
+			</script>
+		 </caption>
+		<thead>
+			<tr>
+				<th colspan="2" scope="col">수 은</th>
+				<th colspan="2" scope="col">염 분</th>
+				<th colspan="2" scope="col"> pH </th>
+				<th colspan="2" scope="col">전 압</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th>최소</th>
+			<th>최대</th>
+			<th>최소</th>
+			<th>최대</th>
+			<th>최소</th>
+			<th>최대</th>
+			<th>최소</th>
+			<th>최대</th>
+		</tr>
+		<tr>
+			<!-- 값을 넣는 부분 -->
+			<!-- 수은  atmosphere_id 0 -->
+			<th id="Tempmin">
+			<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("Tempmin");
+					id.innerHTML = obj[0].min;	
+				});
+			</script>
+			</th>
+			<th id="Tempmax">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("Tempmax");
+					id.innerHTML = obj[0].max;
+				});
+			</script>
+			</th>
+
+			<!-- 염분 atmosphere_id 1  -->
+			<th id="Salimin">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("Salimin");
+					id.innerHTML = obj[1].min;
+				});
+			</script>
+			</th>
+			<th id="Salimax">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("Salimax");
+					id.innerHTML = obj[1].max;
+				});
+			</script>
+			</th>
+	
+			<!-- pH atmosphere_id  2-->
+			<th id="pHmin">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("pHmin");
+					id.innerHTML = obj[2].min;
+				});
+			</script>
+			</th>
+			<th id="pHMax">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("pHMax");
+					id.innerHTML = obj[2].max;
+				});
+			</script>
+			</th>
+
+			<!-- 전압 atmosphere_id 3 -->
+			<th id="voltMin">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("voltMin");
+					id.innerHTML = obj[3].min;
+				});
+			</script>
+			</th>
+			<th id="voltMax">
+				<script>
+				JSONgetminMax(bouy_id).done(function(data){
+					var obj = JSON.parse(decodeURIComponent(data));
+					var id = document.getElementById("voltMax");
+					id.innerHTML = obj[3].max;
+				});
+			</script>
+			</th>
+		</tr>
+		</tbody>
+	</table>
+
+
+	<div id="nav"></div>
+	<div id="chart"></div>
+	
+
+	<div id="detailTable" class="property"> </div>
+	
+
+	
+
+
+	
+	
+	
+	<script src="appInit.js"></script>
+	<script data-main="conf.js" src="lib/requireJS/require.js"></script>
+</body>
+</html>

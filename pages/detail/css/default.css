@@ -1,4 +1,78 @@
-.atmosphere_map{
-	width: 500px;
-	height: 500px;
+.current_map{
+	width: 700px;
+	height: 700px;
+}
+
+.marker_normal {
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0px 0px 5px #FFF;
+	border: 8px solid #0000FF;
+	height: 12px;
+	width: 12px;
+	border-radius: 50px;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.marker_normal:hover{
+	height: 14px;
+	width: 14px;
+	margin-left: -11px;
+	margin-top: -11px;
+}
+
+.marker_hidden {
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0px 0px 5px #FFF;
+	border: 8px solid #A3BFFF;
+	height: 12px;
+	width: 12px;
+	border-radius: 50px;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.marker_hidden:hover{
+	height: 14px;
+	width: 14px;
+	margin-left: -11px;
+	margin-top: -11px;
+
+	border: 8px solid #0000FF;
+}
+
+.marker_warning {
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0px 0px 5px #FFF;
+	border: 8px solid #FF0000;
+	height: 12px;
+	width: 12px;
+	border-radius: 50px;
+	margin-left: -10px;
+	margin-top: -10px;
+	-webkit-animation: warning_ani 1s linear infinite alternate; /* Chrome, Safari, Opera */
+	animation: warning_ani 1s linear infinite alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes warning_ani {
+    from {
+		border-color: #0000FF;
+    }
+    to {
+    	border-color: #FF0000;
+    }
+}
+
+@keyframes warning_ani {
+    from {
+		border-color: #0000FF;
+    }
+    to {
+    	border-color: #FF0000;
+    }
+}
+
+.marker_warning:hover{
+	
 }

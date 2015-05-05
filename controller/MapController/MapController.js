@@ -1,13 +1,7 @@
 define([],function(){
 
-	function MapController(oIntervalGetModel, oMapView){
+	function MapController(oModel, oMapView){
 
-		var viewList = [
-		    '수온', 
-		    'pH', 
-		    '염분', 
-		    '전압'
-		];
         var transList = {
             '수온' 				: '수온',
             'pH'                : 'pH',
@@ -17,6 +11,7 @@ define([],function(){
 		var latitude = 35.225183;
 		var longitude = 126.843047;
 		var infoMarkerOption = {};
+		var bouyDataList;
 
 		this.init = init;
 
@@ -26,7 +21,40 @@ define([],function(){
 				longitude 	: longitude
 			});
 
-			oIntervalGetModel.on('get data', function(data){
+			oModel.onGet('BouyList', function(bouyData){
+				oMapView.clearAllMarker();
+
+			    bouyDataList = bouyData.bouy;
+
+			    _.forEach(bouyDataList, function(bouy, bouy_id){
+			        drawData = {
+			            'title'    	: bouy.name,
+			            'bouyId'	: bouy_id,
+			            'transList' : transList,
+			            'latitude'  : bouy.latitude,
+			            'longitude' : bouy.longitude,
+			            'activity'	: bouy.activity,
+			            'info'		: { }
+			        };
+
+			        _.forEach(bouy.data, function(atmosphere, atmosphere_id){
+			            drawData.info[atmosphere.name] = atmosphere.data;
+			        });
+
+			        if(bouy.activity === '1'){
+			        	drawData.color = 'rgba(0,0,255,1)';
+			        }
+
+			        if(bouy.activity === '0'){
+			        	drawData.color = 'rgba(0,0,255,0.4)';
+			        }
+
+			        console.log(drawData);
+			        oMapView.addInfoMarker(drawData);
+			    });
+			});
+/*
+			oModel.on('get data', function(data){
 			    oMapView.clearAllMarker();
 
 			    _.forEach(data, function(areaData){
@@ -49,7 +77,7 @@ define([],function(){
 			    	oMapView.addInfoMarker(infoMarkerOption);
 			    });
 			    
-			});
+			});*/
 		}
 	}
 

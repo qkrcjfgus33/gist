@@ -22,44 +22,41 @@ define(['MarkerWithLabel', 'tpl!/view/MapView/infoWindow.tpl', 'tpl!/view/MapVie
         }
 
         function addInfoMarker(option) {
-            var latlng = new google.maps.LatLng(option.latitude, option.longitude);
-            /*var marker = new google.maps.Marker({
-                position: latlng,
+            var latlngMarker = new google.maps.LatLng(option.latitude, option.longitude);
+            var marker = new google.maps.Marker({
+                position: latlngMarker,
                 map: map,
-                title: option.title
-            });*/
-
-            var marker = new MarkerWithLabel({
-                position: latlng,
+                title: option.title,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 0, //tamaño 0
+                    fillColor: 'yellow',
+                    strokeColor: option.color,
+                    fillOpacity: 0,
+                    scale: 10
+                }
+            });/*
+
+            var marker = new MarkerWithLabel({
+                position: latlngMarker,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 1,
                 },
                 draggable: false,
                 raiseOnDrag: false,
                 map: map,
-                labelAnchor: new google.maps.Point(0, 0),
                 labelClass: option.className
             });
-            var keys = _.keys();
+*/
+            var content = infoWindowTpl(option);
 
-            var content = infoWindowTpl({
-                title       : option.title,
-                viewList    : option.viewList,
-                transList   : option.transList,
-                info        : option.info
-            });
-
-            content += infoWindowButtonTpl({
-                info        : option.info
-            });
+            content += infoWindowButtonTpl(option);
 
             marker.infowindow = new google.maps.InfoWindow({
                 content: content
             });
-            if(typeof marker.isInfowindowOpen !== 'boolean'){
-                marker.isInfowindowOpen = false;
-            }
+            
+            marker.isInfowindowOpen = false;
             
             google.maps.event.addListener(marker, 'click', function () {
                 _.forEach(markers, function(marker){
@@ -81,7 +78,6 @@ define(['MarkerWithLabel', 'tpl!/view/MapView/infoWindow.tpl', 'tpl!/view/MapVie
 
         function clearAllMarker(){
             _.forEach(markers, function(marker){
-                marker.infowindow.close();
                 marker.setMap(null);
             })
             markers = [];

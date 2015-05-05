@@ -65,10 +65,9 @@ define(['lodash', 'EventEmitter'],
          * event 패턴으로. 외부에선 oDataController.on('getData', callback) 함수로 emit된 값을 받을수 있다.
          */
         function getData(){
-            $.get(root_path+"/model/IntervalGetModel/loadData.php")
+            $.getJSON(root_path+"/model/IntervalGetModel/loadData.php")
                 .done(function(data) {
-                    data = JSON.parse(decodeURIComponent(data));
-
+                    
                     //받은 데이터값을 get data 이름으로 emit 한다.
                     instance.emit('get data', data);
 
